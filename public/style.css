@@ -1,0 +1,104 @@
+/* Общие стили */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin: 0 15px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.FullScreenImage {
+    background-image: url('/img/main.png');
+    background-size: cover; /* Масштабирование изображения */
+    background-position: center; /* Центрирование изображения */
+    background-repeat: no-repeat; /* Отключение повторения */
+    height: 1080px;
+    width: 100%; /* Занять всю ширину экрана */
+}
+
+.main_block{
+    border-radius: 10px;
+    color: black;
+    background-color: rgb(224, 224, 224);
+    padding: 50px;
+    width: 400;
+    position: relative;
+    y: 400;
+}
+
+/* Секция hero */
+.hero {
+    text-align: center;
+    padding: 50px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.hero .cta-button {
+    padding: 10px 20px;
+    background-color: #004d00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.hero .cta-button:hover {
+    background-color: #008000;
+}
+
+/* Карта */
+.map-section {
+    padding: 20px;
+    text-align: center;
+}
+
+.leaflet-container a {
+    color: #0078A8;
+    display: none;
+}
+
+#map {
+    width: 90%;
+    height: 500px;
+    margin: 0 auto;
+    display: none;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+
