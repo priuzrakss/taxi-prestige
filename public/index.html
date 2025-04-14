@@ -1,104 +1,298 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul class="menu">
-                <li><a href="#about">О нас</a></li>
-                <li><a href="#map">Карта</a></li>
-                <li><a href="#contact">Контакты</a></li>
-                <li><a herf="#order"></a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="imageFull">
-            <div class="FullScreenImage">
-                <div class="main_block">
-                    Быстрый заказ
-                    такси
-                    Вы .а ехать
-                    и сразу вдите шау
-                    вре•ь• в пут
-                    Закаять тисы
-                </div>
+  <div class="header">
+    <div class="logo"></div>
+    <button class="order-btn" id="scrollButton">Рассчитать цену</button>
+  </div>
+  <div class="main">
+    <div class="block-1">
+      <div class="z-text">Быстрый заказ такси</div>
+      <div class="n-text">Вы указываете, куда ехать,
+        и сразу видите цену поездки
+        и предполагаемое
+        время в пути.
+        </div>
+        <div class="line"></div>
+        <a class="nb-link" href="#tarifs">Заказать такси </a><img class="arrow-right" src="https://img.icons8.com/?size=100&id=60&format=png&color=000000">
+    </div>
+  </div>
+  <div class="container" id="container">
+    <div class="city-block">
+        <div id="close-btn"><img width="40" height="40" src="https://img.icons8.com/ios-glyphs/30/multiply.png" alt="multiply"/></div>
+        <div class="zb7-text">Города где мы работаем </div>
+        <div class="citys">
+            <div><br>Москва
+                <br>Санкт-Петербург
+                <br>Абакан
+                <br>Адлер
+                <br>Анадырь
+                <br>Анапа
+                <br>Архангельск
+                <br>Астрахань
+                <br>Барнаул
+                <br>Белгород
+                <br>Биробиджан
+                <br>Благовещенск
+                <br>Брянск
+                <br>Великий Новгород
+                <br>Владивосток
+                <br>Владикавказ
+                <br>Владимир
+                <br>Волгоград
+                <br>Вологда
+                <br>Воронеж
+                <br>Геленджик
+                <br>Горно-Алтайск
+                <br>Грозный
+                <br>Екатеринбург
+                <br>Елец</div>
+            <div class="city-list">
+                <br>Иваново
+                <br>Ижевск
+                <br>Йошкар-Ола
+                <br>Иркутск
+                <br>Казань
+                <br>Калининград
+                <br>Калуга
+                <br>Кемерово
+                <br>Киров
+                <br>Кострома
+                <br>Краснодар
+                <br>Красноярск
+                <br>Курган
+                <br>Курск
+                <br>Кызыл
+                <br>Липецк
+                <br>Лиски
+                <br>Магадан
+                <br>Магас
+                <br>Майкоп
+                <br>Махачкала
+                <br>Москва
+                <br>Мурманск
+                <br>Нальчик
+                <br>Нарьян-Мар</div>
+                <div class="city-list">
+                <br>Нижний Новгород
+                <br>Новороссийск
+                <br>Новосибирск
+                <br>Омск
+                <br>Орёл
+                <br>Оренбург
+                <br>Пенза
+                <br>Пермь
+                <br>Петрозаводск
+                <br>Петропавловск-Камчатский
+                <br>Псков
+                <br>Ростов-на-Дону
+                <br>Рязань
+                <br>Салехард
+                <br>Самара
+                <br>Санкт-Петербург
+                <br>Саранск
+                <br>Саратов
+                <br>Севастополь
+                <br>Симферополь
+                <br>Смоленск
+                <br>Сочи
+                <br>Ставрополь
+                <br>Старый Оскол
             </div>
-        </section>
-        <section id="about" class="about">
-            <div class="about_us">
-                <h1>Быстрый заказ такси</h1>
-                <h3>Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit.
-                    Curabitur sodales ornare sapien eget ullamcorper.
-                    Phasellus orci sem, luctus nec malesuada eu,
-                    vehicula sed magna.
-                    Nulla sed ante purus. Quisque iaculis sollicitudin sem,
-                    dictum suscipit mi imperdiet in.
-                    Nunc egestas lobortis risus,
-                     in ultrices felis congue ac.</h3>
-
+            <div class="city-list">
+                <br>Сыктывкар
+                <br>Тамбов
+                <br>Тверь
+                <br>Томск
+                <br>Тула
+                <br>Туапсе
+                <br>Тюмень
+                <br>Улан-Удэ
+                <br>Ульяновск
+                <br>Уфа
+                <br>Хабаровск
+                <br>Ханты-Мансийск
+                <br>Чебоксары
             </div>
-            <div>
+        </div>
+    </div>
+  </div>
+  <div class="block-2">
+    <div class="zb2-text">Почему выбирают нас</div>
+    <div class="nb2-text">- Точность<br>
+      - Пунктуальность<br>
+      - Безопасноть<br>
+      - Доступные цены<br></div>
+  </div>
+  <div class="image-block"></div>
+  <div class="adbou-city">
+    <div class="zb3-text">В каких городах<br> мы работаем</div>
+    <button class="details-btn" id="details-btn">Подробнее</button>
+  </div>
+  
+  <div class="image-block2"></div>
+  <div class="tarifs">
+    <div class="zb4-text" >Тарифы</div>
+  </div>
+  <div class="image-block3">
+    <div id="tarifs"></div>
+    <div class="btn-holder" >
+      <button id="econom" class="tarif-btn1">Эконом</button>
+      <button id="econom" class="tarif-btn">Комфорт</button>
+      <button id="econom" class="tarif-btn">Бизнес</button>
+    </div>
+  </div>
+  <div class="footer">
+  
+  <div class="image-block4">
+    </div>
+  
+    <div class="contacts" id="contacts"> 
+      <div class="zb5-text">Контакты</div>
+      <div class="contact-block"><div class="image_block_tg"></div> Telegram</div>
+      <div class="contact-block"><div class="image_block_ws"></div> Whatsapp</div>
+      <div class="contact-block"><div class="image_block_vk"></div> VK</div>
+      <div class="contact-block"><div class="image_block_tel"></div> +8900900900</div>
+    </div>    
+    <div class="links">
+      <div class="zb6-text">Полезные ссылки</div>
+      <div class="link-block">Начало страницы</div>
+      <div class="link-block">Заказать такси</div>
+      <div class="link-block">Почему выбирают нас</div>
+    </div>
+    <div class="company">ООО «Междугороднее такси престиж»</div>
+  </div>
+  </div>
+  </div>
 
+  <div class="container">
+    <div class="city-block">
+        <div id="close-btn"><img width="40" height="40" src="https://img.icons8.com/ios-glyphs/30/multiply.png" alt="multiply"/></div>
+        <div class="zb7-text">Города где мы работаем </div>
+        <div class="citys">
+            <div><br>Москва
+                <br>Санкт-Петербург
+                <br>Абакан
+                <br>Адлер
+                <br>Анадырь
+                <br>Анапа
+                <br>Архангельск
+                <br>Астрахань
+                <br>Барнаул
+                <br>Белгород
+                <br>Биробиджан
+                <br>Благовещенск
+                <br>Брянск
+                <br>Великий Новгород
+                <br>Владивосток
+                <br>Владикавказ
+                <br>Владимир
+                <br>Волгоград
+                <br>Вологда
+                <br>Воронеж
+                <br>Геленджик
+                <br>Горно-Алтайск
+                <br>Грозный
+                <br>Екатеринбург
+                <br>Елец</div>
+            <div class="city-list">
+                <br>Иваново
+                <br>Ижевск
+                <br>Йошкар-Ола
+                <br>Иркутск
+                <br>Казань
+                <br>Калининград
+                <br>Калуга
+                <br>Кемерово
+                <br>Киров
+                <br>Кострома
+                <br>Краснодар
+                <br>Красноярск
+                <br>Курган
+                <br>Курск
+                <br>Кызыл
+                <br>Липецк
+                <br>Лиски
+                <br>Магадан
+                <br>Магас
+                <br>Майкоп
+                <br>Махачкала
+                <br>Москва
+                <br>Мурманск
+                <br>Нальчик
+                <br>Нарьян-Мар</div>
+                <div class="city-list">
+                <br>Нижний Новгород
+                <br>Новороссийск
+                <br>Новосибирск
+                <br>Омск
+                <br>Орёл
+                <br>Оренбург
+                <br>Пенза
+                <br>Пермь
+                <br>Петрозаводск
+                <br>Петропавловск-Камчатский
+                <br>Псков
+                <br>Ростов-на-Дону
+                <br>Рязань
+                <br>Салехард
+                <br>Самара
+                <br>Санкт-Петербург
+                <br>Саранск
+                <br>Саратов
+                <br>Севастополь
+                <br>Симферополь
+                <br>Смоленск
+                <br>Сочи
+                <br>Ставрополь
+                <br>Старый Оскол
             </div>
-            <div class="about_company">
-                <h1>Быстрый заказ такси</h1>
-                <h3>Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit.
-                    Curabitur sodales ornare sapien eget ullamcorper.
-                    Phasellus orci sem, luctus nec malesuada eu,
-                    vehicula sed magna.
-                    Nulla sed ante purus. Quisque iaculis sollicitudin sem,
-                    dictum suscipit mi imperdiet in.
-                    Nunc egestas lobortis risus,
-                     in ultrices felis congue ac.</h3>
-
+            <div class="city-list">
+                <br>Сыктывкар
+                <br>Тамбов
+                <br>Тверь
+                <br>Томск
+                <br>Тула
+                <br>Туапсе
+                <br>Тюмень
+                <br>Улан-Удэ
+                <br>Ульяновск
+                <br>Уфа
+                <br>Хабаровск
+                <br>Ханты-Мансийск
+                <br>Чебоксары
             </div>
-        </section>
-
-        <section id="tarifs";>
-            <div class="about_company">
-                <h1>Быстрый заказ такси</h1>
-                <h3>Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit.
-                    Curabitur sodales ornare sapien eget ullamcorper.
-                    Phasellus orci sem, luctus nec malesuada eu,
-                    vehicula sed magna.
-                    Nulla sed ante purus. Quisque iaculis sollicitudin sem,
-                    dictum suscipit mi imperdiet in.
-                    Nunc egestas lobortis risus,
-                     in ultrices felis congue ac.</h3>
-
-            </div>
-        </section>
-    <section>
-        <button>button</button>
-        <button>button</button>
-        <button>button</button>
-    </section>
-        <section id="map" class="map-section">
-            <h2>Карта</h2>
-            <div id="map"></div>
-        </section>
-    </main>
-    <footer>
-        <section class="contact">
-
-        </section>
-        <section class="smartLinks"></section>    
-        <p>&copy; 2025 Все права защищены.</p>
-    </footer>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-    
-    <script src="script.js"></script>
+        </div>
+    </div>
+    </div>
+    <div class="order-block" id="order-block">
+      <div class="left-block">
+      <div class="zb8-text">Тариф</div>
+      <div class="tarif" id="tarif">
+          <div id="back">
+              <img width="30" height="30" src="https://img.icons8.com/ios-filled/50/FFFFFF/back.png" alt="back"/>
+          </div>
+          <div id="chosedTarif" class="chosedTarif">
+              text
+          </div>
+           <div id="next">
+              <img width="30" height="30" src="https://img.icons8.com/ios-filled/50/FFFFFF/forward--v1.png" alt="forward--v1"/>
+          </div>
+      </div>
+      <div class="price"> Цена: <div id="price" >0 ₽</div></div>
+      <div class="map"></div>
+      </div>
+      <div class="right-block">
+          <div class="cover-block">
+          <div class="order-info"></div>
+      </div>
+  </div>
 </body>
+<script src="script.js"></script>
 </html>

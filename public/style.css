@@ -1,104 +1,525 @@
-/* Общие стили */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+body{
+  background: rgb(63, 63, 63);
+  font-family: 'Montserrat', sans-serif;
+  max-width: 1920px;
+  z-index: 0;
+  position: relative;
 }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
+html {
+  scroll-behavior: smooth; /* Для плавного перехода */
 }
 
-.menu {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
+div.header{
+  background: rgba(16, 16, 16, 0.93);
+  width: 100%;
+  height: 240px;
+  margin:0;
+  overflow: hidden;
+  display: flex;
+  z-index: 2;
 }
 
-.menu li {
-    margin: 0 15px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.menu a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+div .logo{
+  width: 300px;
+  height: 200px;
+  background-image: url('./images/logo.2.png');
+  background-repeat: no-repeat;
+  height: 125px;
+  width: 425px;
+  margin-top: 60px;
+  margin-left: 80px;
 }
 
-.FullScreenImage {
-    background-image: url('/img/main.png');
-    background-size: cover; /* Масштабирование изображения */
-    background-position: center; /* Центрирование изображения */
-    background-repeat: no-repeat; /* Отключение повторения */
-    height: 1080px;
-    width: 100%; /* Занять всю ширину экрана */
+.order-btn{
+  width: 595px;
+  height: 100px;
+  border-radius: 100px;
+  margin-left: 710px;
+  margin-top: 60px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 35pt;
+  text-align: center;
 }
 
-.main_block{
-    border-radius: 10px;
-    color: black;
-    background-color: rgb(224, 224, 224);
-    padding: 50px;
-    width: 400;
-    position: relative;
-    y: 400;
+.main{
+  width: 100%;
+  height: 1080px;
+  position: relative;
+  margin-top: -240px;
+  background-image: url(./images/main.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: aliceblue;
+  overflow: hidden;
+  z-index: -1;
 }
 
-/* Секция hero */
-.hero {
-    text-align: center;
-    padding: 50px;
-    background-color: #5cb85c;
-    color: white;
+.block-1{
+  background-color: rgb(224, 224, 224);
+  width: 755px; 
+  height: 650px;
+  border-radius: 70px;
+  margin-top: 310px;
+  margin-left: 60px;
+  overflow: hidden;
+  z-index: 3;
+
 }
 
-.hero h1 {
-    margin: 0;
-    font-size: 2em;
+.z-text{
+  font-family: 'Montserrat', sans-serif; /* Устанавливаем шрифт Montserrat */
+  font-weight: 800; /* ExtraBold */
+  font-size: 60px;
+  margin-left: 75px;
+  margin-top: 65px;
 }
 
-.hero .cta-button {
-    padding: 10px 20px;
-    background-color: #004d00;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1em;
-    cursor: pointer;
+.n-text{
+  font-family: 'Montserrat', sans-serif; /* Устанавливаем шрифт Montserrat */
+  font-weight: 500; /* ExtraBold */
+  font-size: 40px; /* Настройка размера текста (при необходимости) */
+  margin-left: 75px;
+  margin-top: 60px;
 }
 
-.hero .cta-button:hover {
-    background-color: #008000;
+.nb-text{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 40px;
+  margin-left: 75px;
+  margin-top: 35px;
 }
 
-/* Карта */
-.map-section {
-    padding: 20px;
-    text-align: center;
+.nb-link{
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+  font-weight: 500;
+  font-size: 40px;
+  margin-left: 75px;
+  margin-top: 35px;
+  position: relative;
+  z-index: 2;
+  text-decoration: none;
 }
 
-.leaflet-container a {
-    color: #0078A8;
-    display: none;
+.line{
+  border: 1px, solid;
+  margin-left: 75px;
+  margin-right: 75px;
+  margin-top: 85px;
 }
 
-#map {
-    width: 90%;
-    height: 500px;
-    margin: 0 auto;
-    display: none;
+.block-2{
+  background-color: rgb(45, 45, 45);
+  width: 1030px;
+  height: 540px;
+  margin-left: 700;
+  border-radius: 0 0 70px 70px;
+  overflow: hidden ;
 }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: white;
+.zb2-text{
+  color: white;
+  font-weight: 700;
+  font-size: 72px;
+  margin-left: 80px;
+  margin-top: 30px;
 }
 
+.nb2-text{
+  color: white;
+  font-size: 40px;
+  font-weight: 400;
+  margin-left: 470px;
+  margin-top: 50px;
+  line-height: 2;
+
+}
+
+.image-block{
+  background-image: url(./images/aboutUs.png);
+  border-radius: 70px;
+  width: 840;
+  height: 520px;
+  margin-left: 260px;
+  filter: brightness(70%);
+  margin-top: -370px;
+}
+
+.adbou-city{
+  background-color: rgb(45, 45, 45);
+  height: 425px;
+  width: 100%;
+  margin-top: 115px;
+  overflow: hidden;
+}
+
+.zb3-text{
+  font-size: 72px;
+  font-weight: 700;
+  color: white;
+  margin-left: 130px;
+  margin-top: 30px;
+
+}
+
+.details-btn{
+  font-size: 40px;
+  font-weight: 600;
+  color: black;
+  margin-left: 130px;
+  margin-top: 85px;
+  width: 400px;
+  height: 90px;
+  border-radius: 100px;
+}
+
+.image-block2{
+  background-image: url(./images/citys.jpg);
+  border-radius: 70px 0 0 70px;
+  width: 845px;
+  height: 600px;
+  margin-left: 1059px;
+  margin-top: -515px;
+  filter: brightness(70%);
+  background-size: 120%;
+  background-repeat: no-repeat;
+}
+
+.tarifs{
+  display: flex;
+  width: 1030px;
+  height: 295px;
+  margin-top: 145px;
+  background-color: rgb(45, 45, 45);
+  border-radius: 0 100px 100px 0;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.zb4-text{
+  font-size: 135px;
+  align-items: center;
+  color: white;
+  font-weight: 700;
+  margin-left: 320px;
+  z-index: 2;
+  margin-top: 65px;
+}
+
+.image-block3{
+  background-image: url(./images/tarifs.png);
+  width: 100%;
+  height: 1080px;
+  margin-top: -145px;
+  filter: brightness(70%);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  z-index: -1;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-holder{
+  position:absolute;
+  background-color: rgb(45, 45, 45);
+  width: 1800;
+  height:210;
+  border-radius: 70px;
+  margin-left: 55px;
+  margin-top: 835px;
+  z-index: 100;
+}
+
+.tarif-btn1{
+  width: 520px;
+  height: 170px;
+  background-color: rgb(26, 20, 26) ;
+  border-radius: 95px;
+  color: white;
+  margin-left: 50px;
+  margin-top: -50px;
+  border: 0px;
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.6);
+  font-weight: 600;
+  font-size: 78px;
+  z-index: 100;
+}
+
+.tarif-btn{
+  width: 520px;
+  height: 170px;
+  background-color: rgb(26, 20, 26);
+  border-radius: 95px;
+  color: white;
+  margin-left: 70px;
+  margin-top: -50px;
+  border: 0px;
+  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.6);
+  font-weight: 600;
+  font-size: 78px;
+  z-index: 100;
+}
+
+.footer{
+  background-image: url('./images/-2_1.png');
+  width: 1905px;
+  height: 800px;
+  background-size: 115%;
+  background-position: center;
+  margin-top: -150px;
+  position:absolute;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.image-block4{
+  width: 1905px;
+  height: 800px;
+  background-color: #2d2d2de1;
+  overflow: hidden;
+}
+
+.contacts{
+  color: white;
+  font-weight: 500;
+  margin-top: -600px;
+  margin-left: 225px;
+  font-size: 50px;
+  overflow: hidden;
+}
+.zb5-text{
+  color: white;
+  font-weight: 500;
+  font-size: 50px;
+  margin-bottom: 55px;
+  overflow: hidden;
+}
+.contact-block{
+  display: flex;
+  font-size: 35px;
+  font-weight: 300;
+  margin-top: 25px;
+}
+
+.image_block_tg{
+  background-color: rgb(41, 150, 223);
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.image_block_ws{
+  background-color: rgb(19, 201, 116);
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.image_block_vk{
+  background-color: rgb(0, 75, 189);
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.image_block_tel{
+  background-color: rgb(43, 219, 96);
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.links{
+  color: white;
+  margin-left: 1050px;
+  margin-top: -362px;
+  font-size: 35px;
+  font-weight: 300;
+}
+
+.link-block{
+  margin-top: 25px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px
+}
+
+.zb6-text{
+  color: white;
+  font-weight: 500;
+  font-size: 50px;
+  margin-bottom: 55px;
+  overflow: hidden;
+  font-weight: 500;
+}
+
+.company{
+  color: rgb(138, 138, 138);
+  margin-top: 255px;
+  margin-left: 37%;
+  font-size: 25px;
+}
+
+.arrow-right{
+  width: 25px;
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+.city-block{
+  width: 80%;
+  height: 90%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 70px;
+}
+
+.zb7-text{
+  margin-left: 115px;
+  margin-top: 0px;
+  font-size: 60px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.citys{
+  display: flex;
+  margin-top: 35px;
+  margin-left: 115px;
+  font-weight: 600;
+  font-size: 19px;
+
+}
+
+.city-list{
+  margin-left: 175px;
+}
+
+#close-btn{
+  margin-top: 40px;
+  margin-left: 1425px;
+}
+
+
+.order-block {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  background: rgb(224, 224, 224);
+  width: 80%;
+  height: 80%;
+  border-radius: 70px;
+  flex-direction: row;
+}
+
+.zb8-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  margin-left: 275px;
+  margin-top: 45px;
+  color: black;
+}
+
+.tarif {
+  color: white;
+  background: rgb(79, 79, 79);
+  width: 300px;
+  height: 75px;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 400;
+  margin-left: 65px;
+  margin-top: 15px;
+}
+
+.chosedTarif{
+  margin-left: 15px;
+
+}
+
+#back{
+
+}
+
+#next{
+  margin-left: 15px;
+
+}
+
+.price {
+  display: flex;
+  margin-top: -67px;
+  margin-left: 400px;
+  font-size: 45px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+#price {
+  margin-left: 6px;
+  width: 75px;
+}
+
+.map {
+  background-color: black;
+  width: 95.5%;
+  height: 65%;
+  border-radius: 35px;
+  margin-top: 50px;
+  margin-left: 35px;
+}
+
+.right-block {
+  width: 49%;
+  height: 100%;
+  margin-left: 28px;
+  filter: blur(px);
+  background: linear-gradient(158deg, rgba(63, 63, 63, 1) -14%, rgba(226, 226, 226, 1) 44%, rgba(84, 84, 84, 1) 86%);
+  border-radius: 0 70px 70px 0;
+}
+
+.cover-block {
+  width: 100%;
+  height: 100%;
+  background: rgba(45, 45, 45, 0.85);
+  border-radius: 0 70px 70px 0;
+}

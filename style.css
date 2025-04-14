@@ -1,0 +1,95 @@
+
+.order-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    background: rgb(224, 224, 224);
+    width: 80%;
+    height: 80%;
+    border-radius: 70px;
+    flex-direction: row;
+}
+
+.zb8-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    margin-left: 275px;
+    margin-top: 45px;
+    color: black;
+}
+
+.tarif {
+    color: white;
+    background: rgb(79, 79, 79);
+    width: 300px;
+    height: 75px;
+    border-radius: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: 400;
+    margin-left: 65px;
+    margin-top: 15px;
+}
+
+.chosedTarif{
+    margin-left: 15px;
+
+}
+
+#back{
+
+}
+
+#next{
+    margin-left: 15px;
+
+}
+
+.price {
+    display: flex;
+    margin-top: -67px;
+    margin-left: 400px;
+    font-size: 45px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#price {
+    margin-left: 6px;
+    width: 75px;
+}
+
+.map {
+    background-color: black;
+    width: 95.5%;
+    height: 65%;
+    border-radius: 35px;
+    margin-top: 50px;
+    margin-left: 35px;
+}
+
+.right-block {
+    width: 49%;
+    height: 100%;
+    margin-left: 28px;
+    filter: blur(px);
+    background: linear-gradient(158deg, rgba(63, 63, 63, 1) -14%, rgba(226, 226, 226, 1) 44%, rgba(84, 84, 84, 1) 86%);
+    border-radius: 0 70px 70px 0;
+}
+
+.cover-block {
+    width: 100%;
+    height: 100%;
+    background: rgba(45, 45, 45, 0.85);
+    border-radius: 0 70px 70px 0;
+}
