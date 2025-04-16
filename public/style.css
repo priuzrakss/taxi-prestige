@@ -1,525 +1,471 @@
-body{
-  background: rgb(63, 63, 63);
-  font-family: 'Montserrat', sans-serif;
-  max-width: 1920px;
-  z-index: 0;
-  position: relative;
-}
-
-html {
-  scroll-behavior: smooth; /* Для плавного перехода */
-}
-
-div.header{
-  background: rgba(16, 16, 16, 0.93);
-  width: 100%;
-  height: 240px;
-  margin:0;
-  overflow: hidden;
-  display: flex;
-  z-index: 2;
-}
-
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Для корректной работы с размерами элементов */
 }
 
-div .logo{
-  width: 300px;
-  height: 200px;
-  background-image: url('./images/logo.2.png');
-  background-repeat: no-repeat;
-  height: 125px;
-  width: 425px;
-  margin-top: 60px;
-  margin-left: 80px;
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Убираем горизонтальную прокрутку */
 }
 
-.order-btn{
-  width: 595px;
-  height: 100px;
-  border-radius: 100px;
-  margin-left: 710px;
-  margin-top: 60px;
+body {
   font-family: 'Montserrat', sans-serif;
+  color: white;
+  background-color: #333;
+}
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.logo {
+  height: 90px;
+}
+
+.calculate-btn {
+  padding: 0px 20px;
+  background-color: #e6e6e6;
+  width: 25%;
+  height: 60px;
+  color: black;
+  border: none;
+  border-radius: 70px;
+  cursor: pointer;
+  font-size: 1.55rem;
   font-weight: 500;
-  font-size: 35pt;
+  font-family: 'Montserrat';
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.calculate-btn:hover {
+  background-color: #2c2c2c;
+  color: white;
+}
+
+main {
+  position: relative;
+  padding: 20px;
+  background-image: url('images/main.png'); /* Устанавливаем фоновое изображение */
+  background-size: cover; /* Масштабируем изображение, чтобы оно покрывало весь блок */
+  background-position: center; /* Центрируем изображение */
+  background-repeat: no-repeat; /* Убираем повторение изображения */
+  min-height: 86vh; /* Устанавливаем минимальную высоту для main */
+}
+
+.main-image {
+  width: 100%;
+  height: auto; /* Высота будет зависеть от пропорций изображения */
+  object-fit: cover;
+  position: relative; /* Изображение остается в потоке документа */
+}
+
+.order {
+  position: relative; /* Устанавливаем относительное позиционирование для order */
+  margin: 5% auto;
+  padding: 1%;
+  background-color: #e6e6e6;
+  border-radius: 50px;
+  color: black;
+  width: 90%;
+  max-width: 700px;
+  height: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.order h1 {
+  margin-top: 10px;
+  margin-bottom: 70px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 3rem;
   text-align: center;
 }
 
-.main{
-  width: 100%;
-  height: 1080px;
-  position: relative;
-  margin-top: -240px;
-  background-image: url(./images/main.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: aliceblue;
-  overflow: hidden;
-  z-index: -1;
-}
-
-.block-1{
-  background-color: rgb(224, 224, 224);
-  width: 755px; 
-  height: 650px;
-  border-radius: 70px;
-  margin-top: 310px;
-  margin-left: 60px;
-  overflow: hidden;
-  z-index: 3;
-
-}
-
-.z-text{
-  font-family: 'Montserrat', sans-serif; /* Устанавливаем шрифт Montserrat */
-  font-weight: 800; /* ExtraBold */
-  font-size: 60px;
-  margin-left: 75px;
-  margin-top: 65px;
-}
-
-.n-text{
-  font-family: 'Montserrat', sans-serif; /* Устанавливаем шрифт Montserrat */
-  font-weight: 500; /* ExtraBold */
-  font-size: 40px; /* Настройка размера текста (при необходимости) */
-  margin-left: 75px;
-  margin-top: 60px;
-}
-
-.nb-text{
+.order p {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 40px;
-  margin-left: 75px;
-  margin-top: 35px;
-}
-
-.nb-link{
-  font-family: 'Montserrat', sans-serif;
-  color: black;
-  font-weight: 500;
-  font-size: 40px;
-  margin-left: 75px;
-  margin-top: 35px;
-  position: relative;
-  z-index: 2;
-  text-decoration: none;
-}
-
-.line{
-  border: 1px, solid;
-  margin-left: 75px;
-  margin-right: 75px;
-  margin-top: 85px;
-}
-
-.block-2{
-  background-color: rgb(45, 45, 45);
-  width: 1030px;
-  height: 540px;
-  margin-left: 700;
-  border-radius: 0 0 70px 70px;
-  overflow: hidden ;
-}
-
-.zb2-text{
-  color: white;
-  font-weight: 700;
-  font-size: 72px;
-  margin-left: 80px;
-  margin-top: 30px;
-}
-
-.nb2-text{
-  color: white;
-  font-size: 40px;
-  font-weight: 400;
-  margin-left: 470px;
-  margin-top: 50px;
-  line-height: 2;
-
-}
-
-.image-block{
-  background-image: url(./images/aboutUs.png);
-  border-radius: 70px;
-  width: 840;
-  height: 520px;
-  margin-left: 260px;
-  filter: brightness(70%);
-  margin-top: -370px;
-}
-
-.adbou-city{
-  background-color: rgb(45, 45, 45);
-  height: 425px;
-  width: 100%;
-  margin-top: 115px;
-  overflow: hidden;
-}
-
-.zb3-text{
-  font-size: 72px;
-  font-weight: 700;
-  color: white;
-  margin-left: 130px;
-  margin-top: 30px;
-
-}
-
-.details-btn{
-  font-size: 40px;
-  font-weight: 600;
-  color: black;
-  margin-left: 130px;
-  margin-top: 85px;
-  width: 400px;
-  height: 90px;
-  border-radius: 100px;
-}
-
-.image-block2{
-  background-image: url(./images/citys.jpg);
-  border-radius: 70px 0 0 70px;
-  width: 845px;
-  height: 600px;
-  margin-left: 1059px;
-  margin-top: -515px;
-  filter: brightness(70%);
-  background-size: 120%;
-  background-repeat: no-repeat;
-}
-
-.tarifs{
+  font-size: 1.8rem;
+  margin-bottom: 70px;
+  color: #333;
+  text-align: justify;
   display: flex;
-  width: 1030px;
-  height: 295px;
-  margin-top: 145px;
-  background-color: rgb(45, 45, 45);
-  border-radius: 0 100px 100px 0;
-  overflow: hidden;
-  z-index: 2;
-}
-
-.zb4-text{
-  font-size: 135px;
-  align-items: center;
-  color: white;
-  font-weight: 700;
-  margin-left: 320px;
-  z-index: 2;
-  margin-top: 65px;
-}
-
-.image-block3{
-  background-image: url(./images/tarifs.png);
-  width: 100%;
-  height: 1080px;
-  margin-top: -145px;
-  filter: brightness(70%);
-  background-size: 100%;
-  background-repeat: no-repeat;
-  z-index: -1;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-holder{
-  position:absolute;
-  background-color: rgb(45, 45, 45);
-  width: 1800;
-  height:210;
-  border-radius: 70px;
-  margin-left: 55px;
-  margin-top: 835px;
-  z-index: 100;
-}
-
-.tarif-btn1{
-  width: 520px;
-  height: 170px;
-  background-color: rgb(26, 20, 26) ;
-  border-radius: 95px;
-  color: white;
-  margin-left: 50px;
-  margin-top: -50px;
-  border: 0px;
-  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.6);
-  font-weight: 600;
-  font-size: 78px;
-  z-index: 100;
-}
-
-.tarif-btn{
-  width: 520px;
-  height: 170px;
-  background-color: rgb(26, 20, 26);
-  border-radius: 95px;
-  color: white;
-  margin-left: 70px;
-  margin-top: -50px;
-  border: 0px;
-  box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.6);
-  font-weight: 600;
-  font-size: 78px;
-  z-index: 100;
-}
-
-.footer{
-  background-image: url('./images/-2_1.png');
-  width: 1905px;
-  height: 800px;
-  background-size: 115%;
-  background-position: center;
-  margin-top: -150px;
-  position:absolute;
-  z-index: -2;
-  overflow: hidden;
-}
-
-.image-block4{
-  width: 1905px;
-  height: 800px;
-  background-color: #2d2d2de1;
-  overflow: hidden;
-}
-
-.contacts{
-  color: white;
-  font-weight: 500;
-  margin-top: -600px;
-  margin-left: 225px;
-  font-size: 50px;
-  overflow: hidden;
-}
-.zb5-text{
-  color: white;
-  font-weight: 500;
-  font-size: 50px;
-  margin-bottom: 55px;
-  overflow: hidden;
-}
-.contact-block{
-  display: flex;
-  font-size: 35px;
-  font-weight: 300;
-  margin-top: 25px;
-}
-
-.image_block_tg{
-  background-color: rgb(41, 150, 223);
-  width: 35px;
-  height: 35px;
-  border-radius: 10px;
-  margin-right: 10px;
-  margin-top: 5px;
-}
-
-.image_block_ws{
-  background-color: rgb(19, 201, 116);
-  width: 35px;
-  height: 35px;
-  border-radius: 10px;
-  margin-right: 10px;
-  margin-top: 5px;
-}
-
-.image_block_vk{
-  background-color: rgb(0, 75, 189);
-  width: 35px;
-  height: 35px;
-  border-radius: 10px;
-  margin-right: 10px;
-  margin-top: 5px;
-}
-
-.image_block_tel{
-  background-color: rgb(43, 219, 96);
-  width: 35px;
-  height: 35px;
-  border-radius: 10px;
-  margin-right: 10px;
-  margin-top: 5px;
-}
-
-.links{
-  color: white;
-  margin-left: 1050px;
-  margin-top: -362px;
-  font-size: 35px;
-  font-weight: 300;
-}
-
-.link-block{
-  margin-top: 25px;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 5px
-}
-
-.zb6-text{
-  color: white;
-  font-weight: 500;
-  font-size: 50px;
-  margin-bottom: 55px;
-  overflow: hidden;
-  font-weight: 500;
-}
-
-.company{
-  color: rgb(138, 138, 138);
-  margin-top: 255px;
-  margin-left: 37%;
-  font-size: 25px;
-}
-
-.arrow-right{
-  width: 25px;
-}
-
-.container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
-  display: none;
   justify-content: center;
-  align-items: center;
-  z-index: 200;
-}
-.city-block{
-  width: 80%;
-  height: 90%;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 70px;
 }
 
-.zb7-text{
-  margin-left: 115px;
+.line {
+  border: 1px solid #333;
+  margin: 30px auto; /* Увеличиваем отступы сверху и снизу */
+  width: 80%; /* Линия занимает 80% ширины секции */
+}
+
+.order .order-btn {
+  display: block;
+  margin: 30px auto; /* Центрируем кнопку по горизонтали */
+  padding: 15px 30px; /* Внутренние отступы кнопки */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem; /* Размер текста кнопки */
+  font-weight: 500;
+  background-color: #e6e6e6;
+  border: 2px solid #333;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.order .order-btn:hover {
+  background-color: #2c2c2c;
+  color: white;
+}
+
+
+
+.order, .about-us, .where-we-work {
+  overflow: hidden; /* Убираем возможные переполнения */
+}
+
+.where-we-work {
+  display: flex
+;
+  justify-content: space-between;
+  align-items: center;
+  margin: 250px auto;
+  padding: 20px;
+  background-color: #444;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow: visible;
+}
+
+.where-we-work-content {
+  width: 50%;
+  text-align: left;
+}
+
+.where-we-work h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.where-we-work p {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  line-height: 1.5;
+  text-align: justify;
+  margin-top: 25px;
+  margin-left: 300px;
+  font-size: 1.45rem;
+  font-weight: 300;
+}
+
+.more-info-btn {
+  display: inline-block;
+  padding: 15px 40px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  background-color: #e6e6e6;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.more-info-btn:hover {
+  background-color: #2c2c2c;
+  color: white;
+}
+
+.where-we-work-image {
+  width: 45%;
+  filter: brightness(70%);
+  border-radius: 50px;
+  object-fit: cover;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  margin-right: -100px;
+}
+
+.why-choose-us {
+  margin-left: 50%; /* Для ПК текст остается справа */
+  margin-right: 20%;
   margin-top: 0px;
-  font-size: 60px;
+  position: relative;
+  padding: 20px;
+  background-color: #444;
+  border-radius: 0 0 50px 50px;
+  width: 50%;
+  max-width: 800px;
+  height: 500px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  text-align: center; /* Центрируем текст по умолчанию */
+}
+
+.why-choose-us h2 {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-}
-
-.citys{
-  display: flex;
-  margin-top: 35px;
-  margin-left: 115px;
-  font-weight: 600;
-  font-size: 19px;
-
-}
-
-.city-list{
-  margin-left: 175px;
-}
-
-#close-btn{
-  margin-top: 40px;
-  margin-left: 1425px;
-}
-
-
-.order-block {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
-  background: rgb(224, 224, 224);
-  width: 80%;
-  height: 80%;
-  border-radius: 70px;
-  flex-direction: row;
-}
-
-.zb8-text {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 50px;
+  font-size: 3.45rem;
   font-weight: 700;
-  margin-left: 275px;
-  margin-top: 45px;
-  color: black;
-}
-
-.tarif {
   color: white;
-  background: rgb(79, 79, 79);
-  width: 300px;
-  height: 75px;
-  border-radius: 100px;
+  margin-bottom: 40px;
+}
+
+
+.why-choose-us-content {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: nowrap;
-  align-content: center;
+  flex-direction: column; /* Размещаем элементы в колонку */
   align-items: center;
-  font-size: 32px;
+  justify-content: center;
+}
+
+.why-choose-us-image {
+  width: 80%;
+  border-radius: 50px;
+  filter: brightness(70%);
+  object-fit: cover;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: -43%;
+  top: 30%;
+}
+
+.why-choose-us-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.85rem;
   font-weight: 400;
-  margin-left: 65px;
-  margin-top: 15px;
+  color: white;
+  line-height: 2;
+  text-align: center; /* Центрируем текст списка */
 }
 
-.chosedTarif{
-  margin-left: 15px;
-
+.why-choose-us-list li {
+  margin-bottom: 10px;
+  text-align: left;
+  margin-left: 155px;
 }
 
-#back{
+/* Адаптация для телефонов */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px; /* Уменьшаем общий размер текста */
+  }
 
+  main {
+    position: relative; /* Устанавливаем относительное позиционирование для main */
+    padding: 20px;
+  }
+
+  header {
+    flex-direction: column; /* Размещаем элементы в колонку */
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo {
+    height: 70px; /* Уменьшаем размер логотипа */
+  }
+
+  .calculate-btn {
+    width: auto; /* Кнопка занимает ширину контента */
+    margin-top: 10px; /* Добавляем отступ сверху */
+  }
+
+  .order {
+    width: 100%; /* Растягиваем блок на всю ширину */
+    height: auto; /* Высота подстраивается под контент */
+    margin: 20px 0;
+    padding: 20px;
+  }
+
+  .order h1 {
+    font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    margin-top: 15px;
+  }
+
+  .order p {
+    font-size: 1.2rem; /* Уменьшаем размер текста */
+  }
+
+  .where-we-work {
+    margin-left: 0; /* Убираем смещение вправо */
+    padding: 10px;
+  }
+
+  .where-we-work h2 {
+    font-size: 1.8rem; /* Уменьшаем размер заголовка */
+  }
+
+  .where-we-work p {
+    margin-left: 0; /* Убираем отступ слева */
+    font-size: 1rem; /* Уменьшаем размер текста */
+  }
+
+  .more-info-btn {
+    width: 100%; /* Кнопка занимает всю ширину */
+    padding: 10px;
+  }
+
+  footer {
+    flex-direction: column; /* Размещаем элементы в колонку */
+    text-align: center;
+  }
+
+  footer ul {
+    padding: 0;
+  }
+
+  footer p {
+    margin-top: 20px;
+  }
+
+  .why-choose-us {
+    margin: 0 auto; /* Центрируем блок */
+    width: 100%; /* Блок занимает всю ширину */
+    padding: 10px; /* Уменьшаем внутренние отступы */
+    border-radius:  0 0 20px 20px;
+    max-height: 350px; /* Ограничиваем максимальную высоту */;
+  }
+
+  .why-choose-us-image {
+    width: 45%;
+    filter: brightness(70%);
+    border-radius: 50px;
+    object-fit: cover;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-right: -100px;
+  }
+
+  .why-choose-us h2 {
+    font-size: 1.8rem; /* Уменьшаем размер заголовка */
+    margin-bottom: 10px; /* Уменьшаем отступ снизу */
+  }
+
+  .why-choose-us-list {
+    font-size: 1rem; /* Уменьшаем размер текста списка */
+    line-height: 1.5; /* Уменьшаем межстрочный интервал */
+    margin-left: 0; /* Убираем смещение списка */
+  }
+
+  .why-choose-us-list li {
+    margin-bottom: 8px;
+    margin-left: 0;
+  }
 }
 
-#next{
-  margin-left: 15px;
 
+@media (max-width: 1024px) {
+  body {
+    font-size: 14px; /* Уменьшаем общий размер текста */
+  }
+
+  main {
+    position: relative; /* Устанавливаем относительное позиционирование для main */
+    padding: 20px;
+  }
+  
+  .order {
+    width: 95%; /* Растягиваем блок почти на всю ширину */
+    margin: 10px auto; /* Центрируем блок */
+  }
+
+  .calculate-btn {
+    width: auto; /* Кнопка занимает ширину контента */
+  }
+
+  .where-we-work {
+    margin-left: 0; /* Убираем смещение */
+    padding: 10px;
+  }
+
+  .why-choose-us {
+    margin: 0 auto;
+    width: 90%;
+    padding: 15px;
+    border-radius: 10px;
+    max-height: 350px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .where-we-work-image {
+    width: 63%;
+    filter: brightness(70%);
+    border-radius: 50px;
+    object-fit: cover;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-right: -100px;
+  } 
+  .why-choose-us-image {
+    width: 100%;
+    max-height: 120px;
+    border-radius: 30px;
+    filter: brightness(70%);
+    object-fit: cover;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: -20%;
+    top: 115%;
+  }
+
+  .why-choose-us h2 {
+    font-size: 1.6rem;
+    margin-bottom: 35px;
+    margin-top: 20px;
+    text-align: center;
 }
 
-.price {
-  display: flex;
-  margin-top: -67px;
-  margin-left: 400px;
-  font-size: 45px;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  .why-choose-us-content {
+    flex-direction: column; /* Размещаем элементы в колонку */
+    align-items: center;
+    justify-content: center;
+  }
+
+  .why-choose-us-list {
+    font-size: 1.2rem; /* Уменьшаем размер текста списка */
+    line-height: 1.8; /* Уменьшаем межстрочный интервал */
+    text-align: center; /* Центрируем текст */
+    margin-left: 0; /* Убираем смещение списка */
+  }
+
+  .why-choose-us-list li {
+    margin-bottom: 10px;
+    margin-left: auto;
+    text-align: left;
 }
 
-#price {
-  margin-left: 6px;
-  width: 75px;
-}
+  .where-we-work h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 20px;
+  }
 
-.map {
-  background-color: black;
-  width: 95.5%;
-  height: 65%;
-  border-radius: 35px;
-  margin-top: 50px;
-  margin-left: 35px;
-}
-
-.right-block {
-  width: 49%;
-  height: 100%;
-  margin-left: 28px;
-  filter: blur(px);
-  background: linear-gradient(158deg, rgba(63, 63, 63, 1) -14%, rgba(226, 226, 226, 1) 44%, rgba(84, 84, 84, 1) 86%);
-  border-radius: 0 70px 70px 0;
-}
-
-.cover-block {
-  width: 100%;
-  height: 100%;
-  background: rgba(45, 45, 45, 0.85);
-  border-radius: 0 70px 70px 0;
+  .more-info-btn {
+    display: inline-block;
+    padding: 15px 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    background-color: #e6e6e6;
+    color: black;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 }
