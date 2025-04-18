@@ -14,7 +14,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   color: white;
   background-color: #333;
-}
+  }
 
 
 header {
@@ -136,7 +136,7 @@ main {
 ;
   justify-content: space-between;
   align-items: center;
-  margin: 250px auto;
+  margin-top: 300px ;
   padding: 20px;
   background-color: #444;
   width: 100%;
@@ -189,7 +189,7 @@ main {
 }
 
 .where-we-work-image {
-  width: 45%;
+  width: 35%;
   filter: brightness(70%);
   border-radius: 50px;
   object-fit: cover;
@@ -257,6 +257,81 @@ main {
   margin-bottom: 10px;
   text-align: left;
   margin-left: 155px;
+}
+
+.tarrif-header {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  width: 50%;
+  background: #2c2c2c;
+  border-radius: 20px;
+  height: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.tarrif-header h2 {
+  margin-left: 50%;
+  padding: 0;
+  color: white;
+}
+
+.tariffs {
+  position: relative;
+  width: 100%;
+  max-width: 1920px;
+  margin-top: 10%;
+  padding: 0px;
+  text-align: center;
+}
+
+.tariffs-content {
+  display: flex
+;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+  background: #1d1d1d;
+  border-radius: 50px;
+  width: 70%;
+  height: 90px;
+  margin: 700px auto;
+  margin-bottom: 0px;
+}
+
+.tariff-item {
+  width: 30%; /* Ширина элемента */
+  max-width: 300px; /* Ограничиваем максимальную ширину */
+  margin: 10px;
+  margin-top: -65px;
+  padding: 20px;
+  background-color: #393939;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: white;
+  text-align: center;
+}
+
+.tariff-item h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.tariffs-image {
+  width: calc(135% * var(--user-scale));
+  max-height: 880px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  margin-top: -848px;
+  z-index: -1;
+  position: relative;
 }
 
 /* Адаптация для телефонов */
@@ -365,6 +440,26 @@ main {
     margin-bottom: 8px;
     margin-left: 0;
   }
+
+  .tarrif-header{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+    width: 100%;
+    background: #2c2c2c;
+    border-radius: 0;
+    height: 150px;
+    text-align: right;
+  }
+  
+  .tarrif-header h2 {
+    margin-top: 25%;
+    padding: 20px;
+    color: white;
+    margin-right: 50px;
+  }
+
 }
 
 
@@ -402,7 +497,7 @@ main {
   }
 
   .where-we-work-image {
-    width: 63%;
+    width: 40%;
     filter: brightness(70%);
     border-radius: 50px;
     object-fit: cover;
