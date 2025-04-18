@@ -21,24 +21,24 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.9);
+  padding: 2vw;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .logo {
-  height: 90px;
+  height: 5vw;
 }
 
 .calculate-btn {
   padding: 0px 20px;
   background-color: #e6e6e6;
-  width: 25%;
-  height: 60px;
+  width: 23vw;
+  height: 4vw;
   color: black;
   border: none;
-  border-radius: 70px;
+  border-radius: 3.5vw;
   cursor: pointer;
-  font-size: 1.55rem;
+  font-size: 1.8vw;
   font-weight: 500;
   font-family: 'Montserrat';
   cursor: pointer;
@@ -52,12 +52,14 @@ header {
 
 main {
   position: relative;
-  padding: 20px;
+  padding: 25px;
   background-image: url('images/main.png'); /* Устанавливаем фоновое изображение */
   background-size: cover; /* Масштабируем изображение, чтобы оно покрывало весь блок */
   background-position: center; /* Центрируем изображение */
   background-repeat: no-repeat; /* Убираем повторение изображения */
-  min-height: 86vh; /* Устанавливаем минимальную высоту для main */
+  min-height: 60vw; /* Устанавливаем минимальную высоту для main */
+  margin-top: -11vw;
+  z-index: -10;
 }
 
 .main-image {
@@ -72,28 +74,28 @@ main {
   margin: 5% auto;
   padding: 1%;
   background-color: #e6e6e6;
-  border-radius: 50px;
+  border-radius: 3.5vw;
   color: black;
-  width: 90%;
-  max-width: 700px;
-  height: auto;
+  width: 45vw;
+  height: 60vh;
+  margin-top: 17vw;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .order h1 {
   margin-top: 10px;
-  margin-bottom: 70px;
+  margin-bottom: 3.5vw;
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: 3rem;
+  font-size: 3vw;
   text-align: center;
 }
 
 .order p {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 1.8rem;
-  margin-bottom: 70px;
+  font-size: 2vw;
+  margin-bottom: 5vw;
   color: #333;
   text-align: justify;
   display: flex;
@@ -109,13 +111,13 @@ main {
 .order .order-btn {
   display: block;
   margin: 30px auto; /* Центрируем кнопку по горизонтали */
-  padding: 15px 30px; /* Внутренние отступы кнопки */
+  padding: 1vw 1vw; /* Внутренние отступы кнопки */
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem; /* Размер текста кнопки */
+  font-size: 2vw; /* Размер текста кнопки */
   font-weight: 500;
   background-color: #e6e6e6;
   border: 2px solid #333;
-  border-radius: 30px;
+  border-radius: 3.5vw;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -132,16 +134,15 @@ main {
 }
 
 .where-we-work {
-  display: flex
-;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 300px ;
+  margin-top: 15vw ;
   padding: 20px;
   background-color: #444;
-  width: 100%;
+  width: 99vw;
+  height: 15vw;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-height: 300px;
   overflow: visible;
 }
 
@@ -152,7 +153,7 @@ main {
 
 .where-we-work h2 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 3.5rem;
+  font-size: 2.7vw;
   font-weight: 700;
   color: white;
   margin-bottom: 20px;
@@ -171,14 +172,14 @@ main {
 
 .more-info-btn {
   display: inline-block;
-  padding: 15px 40px;
+  padding: 1vw 2vw;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.8vw;
   font-weight: 500;
   background-color: #e6e6e6;
   color: black;
   border: none;
-  border-radius: 30px;
+  border-radius: 3.5vw;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -191,7 +192,7 @@ main {
 .where-we-work-image {
   width: 35%;
   filter: brightness(70%);
-  border-radius: 50px;
+  border-radius: 3.5vw 0vw 0vw 3.5vw;
   object-fit: cover;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   margin-right: -100px;
@@ -200,14 +201,13 @@ main {
 .why-choose-us {
   margin-left: 50%; /* Для ПК текст остается справа */
   margin-right: 20%;
-  margin-top: 0px;
+  margin-top: 0vw;
   position: relative;
   padding: 20px;
   background-color: #444;
   border-radius: 0 0 50px 50px;
-  width: 50%;
-  max-width: 800px;
-  height: 500px;
+  width: 45vw;
+  height: 30vw;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1;
   text-align: center; /* Центрируем текст по умолчанию */
@@ -215,10 +215,10 @@ main {
 
 .why-choose-us h2 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 3.45rem;
+  font-size: 3.2vw;
   font-weight: 700;
   color: white;
-  margin-bottom: 40px;
+  margin-bottom: 4vw;
 }
 
 
@@ -231,7 +231,7 @@ main {
 
 .why-choose-us-image {
   width: 80%;
-  border-radius: 50px;
+  border-radius: 3.5vw;
   filter: brightness(70%);
   object-fit: cover;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -246,36 +246,38 @@ main {
   margin: 0;
   text-align: left;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.85rem;
+  font-size: 1.85vw;
   font-weight: 400;
   color: white;
   line-height: 2;
   text-align: center; /* Центрируем текст списка */
+  margin-top: 0vw;
 }
 
 .why-choose-us-list li {
-  margin-bottom: 10px;
+  margin-bottom: 1.5vw;
   text-align: left;
-  margin-left: 155px;
+  margin-left: 10vw;
 }
 
 .tarrif-header {
   font-family: 'Montserrat', sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.2vw;
   font-weight: 700;
   color: white;
-  width: 50%;
+  width: 40vw;
   background: #2c2c2c;
-  border-radius: 20px;
-  height: auto;
+  border-radius: 0vw 1.7vw 1.7vw 0vw;
+  height: 7vw;
   padding: 20px;
   text-align: center;
 }
 
 .tarrif-header h2 {
-  margin-left: 50%;
+  margin-left: 20vw;
   padding: 0;
   color: white;
+  margin-top: auto;
 }
 
 .tariffs {
@@ -288,28 +290,27 @@ main {
 }
 
 .tariffs-content {
-  display: flex
-;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 37vw;
   background: #1d1d1d;
-  border-radius: 50px;
-  width: 70%;
-  height: 90px;
-  margin: 700px auto;
+  border-radius: 3.5vw;
+  width: 80vw;
+  height: 5vw;
   margin-bottom: 0px;
+  margin-left: 10vw;
 }
 
 .tariff-item {
-  width: 30%; /* Ширина элемента */
-  max-width: 300px; /* Ограничиваем максимальную ширину */
-  margin: 10px;
-  margin-top: -65px;
-  padding: 20px;
+  width: 23vw; /* Ширина элемента */
+  height: 4vw;
+  margin: 1vw;
+  margin-top: -3.5vw;
+  padding: 1.1vw;
   background-color: #393939;
-  border-radius: 20px;
+  border-radius: 3.5vw;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   color: white;
   text-align: center;
@@ -317,21 +318,23 @@ main {
 
 .tariff-item h3 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.5vw;
   font-weight: 700;
   color: #ffffff;
 }
 
 .tariffs-image {
-  width: calc(135% * var(--user-scale));
-  max-height: 880px;
+  width: 100vw;
+  height: 43vw;
   object-fit: cover;
   object-position: center;
   border-radius: 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  margin-top: -848px;
+  margin-top: -46vw;
   z-index: -1;
-  position: relative;
+  position: absolute;
+  top: 49.5vw;  /* Сдвигает вниз на 20px от исходной позиции */
+  left: 0vw;
 }
 
 /* Адаптация для телефонов */
@@ -413,7 +416,7 @@ main {
     width: 100%; /* Блок занимает всю ширину */
     padding: 10px; /* Уменьшаем внутренние отступы */
     border-radius:  0 0 20px 20px;
-    max-height: 350px; /* Ограничиваем максимальную высоту */;
+    max-height: 350px; /* Ограничиваем максимальную высоту */
   }
 
   .why-choose-us-image {
