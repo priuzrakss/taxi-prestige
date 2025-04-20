@@ -30,7 +30,7 @@ header {
 }
 
 .calculate-btn {
-  padding: 0px 20px;
+  padding: 0vw 2vw;
   background-color: #e6e6e6;
   width: 23vw;
   height: 4vw;
@@ -52,7 +52,7 @@ header {
 
 main {
   position: relative;
-  padding: 25px;
+  padding: 2.5vw;
   background-image: url('images/main.png'); /* Устанавливаем фоновое изображение */
   background-size: cover; /* Масштабируем изображение, чтобы оно покрывало весь блок */
   background-position: center; /* Центрируем изображение */
@@ -63,7 +63,7 @@ main {
 }
 
 .main-image {
-  width: 100%;
+  width: 100vw;
   height: auto; /* Высота будет зависеть от пропорций изображения */
   object-fit: cover;
   position: relative; /* Изображение остается в потоке документа */
@@ -71,19 +71,19 @@ main {
 
 .order {
   position: relative; /* Устанавливаем относительное позиционирование для order */
-  margin: 5% auto;
-  padding: 1%;
+  margin: 5vw auto;
+  padding: 1vw;
   background-color: #e6e6e6;
   border-radius: 3.5vw;
   color: black;
   width: 45vw;
-  height: 60vh;
+  height: 33vw;
   margin-top: 17vw;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .order h1 {
-  margin-top: 10px;
+  margin-top: 1vw;
   margin-bottom: 3.5vw;
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
@@ -102,21 +102,16 @@ main {
   justify-content: center;
 }
 
-.line {
-  border: 1px solid #333;
-  margin: 30px auto; /* Увеличиваем отступы сверху и снизу */
-  width: 80%; /* Линия занимает 80% ширины секции */
-}
 
 .order .order-btn {
   display: block;
-  margin: 30px auto; /* Центрируем кнопку по горизонтали */
+  margin: 3vw auto; /* Центрируем кнопку по горизонтали */
   padding: 1vw 1vw; /* Внутренние отступы кнопки */
   font-family: 'Montserrat', sans-serif;
   font-size: 2vw; /* Размер текста кнопки */
   font-weight: 500;
   background-color: #e6e6e6;
-  border: 2px solid #333;
+  border: 0.2vw solid #333;
   border-radius: 3.5vw;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -138,7 +133,7 @@ main {
   justify-content: space-between;
   align-items: center;
   margin-top: 15vw ;
-  padding: 20px;
+  padding: 2vw;
   background-color: #444;
   width: 99vw;
   height: 15vw;
@@ -147,7 +142,7 @@ main {
 }
 
 .where-we-work-content {
-  width: 50%;
+  width: 100vw;
   text-align: left;
 }
 
@@ -156,17 +151,17 @@ main {
   font-size: 2.7vw;
   font-weight: 700;
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: 1.2vw;
 }
 
 .where-we-work p {
   font-family: 'Montserrat', sans-serif;
   text-align: center;
-  line-height: 1.5;
+  line-height: 1.5vw;
   text-align: justify;
-  margin-top: 25px;
-  margin-left: 300px;
-  font-size: 1.45rem;
+  margin-top: 2.5vw;
+  margin-left: 30vw;
+  font-size: 2.5vw;
   font-weight: 300;
 }
 
@@ -190,22 +185,22 @@ main {
 }
 
 .where-we-work-image {
-  width: 35%;
+  width: 35vw;
+  height: 22vw;
   filter: brightness(70%);
   border-radius: 3.5vw 0vw 0vw 3.5vw;
-  object-fit: cover;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  margin-right: -100px;
+  margin-right: -10vw;
 }
 
 .why-choose-us {
-  margin-left: 50%; /* Для ПК текст остается справа */
-  margin-right: 20%;
+  margin-left: 50vw; /* Для ПК текст остается справа */
+  margin-right: 20vw;
   margin-top: 0vw;
   position: relative;
-  padding: 20px;
+  padding: 2vw;
   background-color: #444;
-  border-radius: 0 0 50px 50px;
+  border-radius: 0 0 5vw 5vw;
   width: 45vw;
   height: 30vw;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -230,26 +225,26 @@ main {
 }
 
 .why-choose-us-image {
-  width: 80%;
+  width: 40vw;
   border-radius: 3.5vw;
   filter: brightness(70%);
   object-fit: cover;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   position: absolute;
-  left: -43%;
-  top: 30%;
+  left: -25vw;
+  top: 8vw;
 }
 
 .why-choose-us-list {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 0vw;
+  margin: 0vw;
   text-align: left;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.85vw;
   font-weight: 400;
   color: white;
-  line-height: 2;
+  line-height: 3vw;
   text-align: center; /* Центрируем текст списка */
   margin-top: 0vw;
 }
@@ -269,23 +264,22 @@ main {
   background: #2c2c2c;
   border-radius: 0vw 1.7vw 1.7vw 0vw;
   height: 7vw;
-  padding: 20px;
+  padding: 2vw;
   text-align: center;
 }
 
 .tarrif-header h2 {
   margin-left: 20vw;
-  padding: 0;
+  padding: 0vw;
   color: white;
-  margin-top: auto;
+  margin-top: -0.9vw;
 }
 
 .tariffs {
   position: relative;
-  width: 100%;
-  max-width: 1920px;
-  margin-top: 10%;
-  padding: 0px;
+  width: 100vw;
+  margin-top: 10vw;
+  padding: 0vw;
   text-align: center;
 }
 
@@ -299,7 +293,7 @@ main {
   border-radius: 3.5vw;
   width: 80vw;
   height: 5vw;
-  margin-bottom: 0px;
+  margin-bottom: 0vw;
   margin-left: 10vw;
 }
 
@@ -337,152 +331,153 @@ main {
   left: 0vw;
 }
 
-/* Адаптация для телефонов */
-@media (max-width: 768px) {
-  body {
-    font-size: 14px; /* Уменьшаем общий размер текста */
-  }
 
-  main {
-    position: relative; /* Устанавливаем относительное позиционирование для main */
-    padding: 20px;
+.footer{
+  background-image: url('./images/-2_1.png');
+  width: 100vw;
+  height: 35vw;
+  background-size: 115%;
+  background-position: center;
+  margin-top: -3vw;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.image-block4{
+  width: 100vw;
+  height: 35vw;
+  background-color: #2d2d2de1;
+  overflow: hidden;
+}
+.contacts{
+  color: white;
+  font-weight: 500;
+  margin-top: -30vw;
+  margin-left: 11vw;
+  overflow: hidden;
+}
+.zb5-text{
+  color: white;
+  font-weight: 500;
+  font-size: 2.5vw;
+  margin-bottom: 2.8vw;
+  overflow: hidden;
+}
+.contact-block{
+  display: flex;
+  font-size: 2vw;
+  font-weight: 300;
+  margin-top: 2vw;
+}
+
+.image_block_tg{
+  background-color: rgb(41, 150, 223);
+  width: 2vw;
+  height: 2vw;
+  border-radius: 0.5vw;
+  margin-right: 0.5vw;
+  margin-top: 0.25vw;
+}
+
+.image_block_ws{
+  background-color: rgb(19, 201, 116);
+  width: 2vw;
+  height: 2vw;
+  border-radius: 0.5vw;
+  margin-right: 0.5vw;
+  margin-top: 0.25vw;
+}
+
+.image_block_vk{
+  background-color: rgb(0, 75, 189);
+  width: 2vw;
+  height: 2vw;
+  border-radius: 0.5vw;
+  margin-right: 0.5vw;
+  margin-top: 0.25vw;
+}
+
+.image_block_tel{
+  background-color: rgb(43, 219, 96);
+  width: 2vw;
+  height: 2vw;
+  border-radius: 0.5vw;
+  margin-right: 0.5vw;
+  margin-top: 0.25vw;
+}
+
+.links{
+  color: white;
+  margin-left: 64vw;
+  margin-top: -20.9vw;
+  font-size: 2vw;
+  font-weight: 300;
+}
+
+.link-block{
+  margin-top: 2vw;
+  text-decoration: underline;
+  text-decoration-thickness: 0vw;
+  text-underline-offset: 0.5vw;
+}
+
+.zb6-text{
+  color: white;
+  font-weight: 500;
+  font-size: 2.5vw;
+  margin-bottom: 2vw;
+  overflow: hidden;
+  font-weight: 500;
+}
+
+.company{
+  color: rgb(138, 138, 138);
+  margin-top: 10vw;
+  margin-left: 35vw;
+  font-size: 1.5vw;
+}
+
+/* Адаптация для телефонов */
+@media (max-width: 1024px) {
+  body {
+    font-size: 1.4vw; /* Уменьшаем общий размер текста */
   }
 
   header {
-    flex-direction: column; /* Размещаем элементы в колонку */
-    align-items: center;
-    text-align: center;
+    flex-direction: column; /* Меняем направление flex на вертикальное */
+    padding: 20vw; /* Увеличиваем отступы */
+    text-align: center; /* Центрируем текст */
+    background-color: rgba(17, 17, 17, 0.95);
   }
 
-  .logo {
-    height: 70px; /* Уменьшаем размер логотипа */
+  /* Если внутри хедера есть лого и навигация */
+  header > nav {
+    margin-top: 3vw; /* Добавляем отступ между элементами */
   }
 
-  .calculate-btn {
-    width: auto; /* Кнопка занимает ширину контента */
-    margin-top: 10px; /* Добавляем отступ сверху */
-  }
-
-  .order {
-    width: 100%; /* Растягиваем блок на всю ширину */
-    height: auto; /* Высота подстраивается под контент */
-    margin: 20px 0;
-    padding: 20px;
-  }
-
-  .order h1 {
-    font-size: 1.8rem; /* Уменьшаем размер заголовка */
-    margin-top: 15px;
-  }
-
-  .order p {
-    font-size: 1.2rem; /* Уменьшаем размер текста */
-  }
-
-  .where-we-work {
-    margin-left: 0; /* Убираем смещение вправо */
-    padding: 10px;
-  }
-
-  .where-we-work h2 {
-    font-size: 1.8rem; /* Уменьшаем размер заголовка */
-  }
-
-  .where-we-work p {
-    margin-left: 0; /* Убираем отступ слева */
-    font-size: 1rem; /* Уменьшаем размер текста */
-  }
-
-  .more-info-btn {
-    width: 100%; /* Кнопка занимает всю ширину */
-    padding: 10px;
-  }
-
-  footer {
-    flex-direction: column; /* Размещаем элементы в колонку */
-    text-align: center;
-  }
-
-  footer ul {
-    padding: 0;
-  }
-
-  footer p {
-    margin-top: 20px;
-  }
-
-  .why-choose-us {
-    margin: 0 auto; /* Центрируем блок */
-    width: 100%; /* Блок занимает всю ширину */
-    padding: 10px; /* Уменьшаем внутренние отступы */
-    border-radius:  0 0 20px 20px;
-    max-height: 350px; /* Ограничиваем максимальную высоту */
-  }
-
-  .why-choose-us-image {
-    width: 45%;
-    filter: brightness(70%);
-    border-radius: 50px;
-    object-fit: cover;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    margin-right: -100px;
-  }
-
-  .why-choose-us h2 {
-    font-size: 1.8rem; /* Уменьшаем размер заголовка */
-    margin-bottom: 10px; /* Уменьшаем отступ снизу */
-  }
-
-  .why-choose-us-list {
-    font-size: 1rem; /* Уменьшаем размер текста списка */
-    line-height: 1.5; /* Уменьшаем межстрочный интервал */
-    margin-left: 0; /* Убираем смещение списка */
-  }
-
-  .why-choose-us-list li {
-    margin-bottom: 8px;
-    margin-left: 0;
-  }
-
-  .tarrif-header{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: white;
-    width: 100%;
-    background: #2c2c2c;
-    border-radius: 0;
-    height: 150px;
-    text-align: right;
-  }
-  
-  .tarrif-header h2 {
-    margin-top: 25%;
-    padding: 20px;
-    color: white;
-    margin-right: 50px;
-  }
-
-}
-
-
-@media (max-width: 1024px) {
-  body {
-    font-size: 14px; /* Уменьшаем общий размер текста */
+  .logo{
+    margin-left: 3vw;
+    width: 70vw;
+    height: 20.5vw;
   }
 
   main {
     position: relative; /* Устанавливаем относительное позиционирование для main */
-    padding: 20px;
+    padding: 60vw;
+    margin-top: -60.5vw;
+    margin-left: -40vw;
+    background-position: center;
   }
   
   .order {
-    width: 95%; /* Растягиваем блок почти на всю ширину */
-    margin: 10px auto; /* Центрируем блок */
+    width: 90vw; /* Растягиваем блок почти на всю ширину */
+    height: 80vw;
+    margin: 10vw -15vw; /* Центрируем блок */
   }
 
   .calculate-btn {
     width: auto; /* Кнопка занимает ширину контента */
+    display: none;
   }
 
   .where-we-work {
