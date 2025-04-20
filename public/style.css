@@ -122,8 +122,6 @@ main {
   color: white;
 }
 
-
-
 .order, .about-us, .where-we-work {
   overflow: hidden; /* Убираем возможные переполнения */
 }
@@ -191,7 +189,9 @@ main {
   border-radius: 3.5vw 0vw 0vw 3.5vw;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   margin-right: -10vw;
+  background-image: url("images/citys.jpg");
 }
+
 
 .why-choose-us {
   margin-left: 50vw; /* Для ПК текст остается справа */
@@ -261,7 +261,7 @@ main {
   font-weight: 700;
   color: white;
   width: 40vw;
-  background: #2c2c2c;
+  background: #414141;
   border-radius: 0vw 1.7vw 1.7vw 0vw;
   height: 7vw;
   padding: 2vw;
@@ -289,12 +289,12 @@ main {
   justify-content: space-around;
   align-items: center;
   margin-top: 37vw;
-  background: #1d1d1d;
   border-radius: 3.5vw;
   width: 80vw;
   height: 5vw;
   margin-bottom: 0vw;
   margin-left: 10vw;
+  background-color: #2b2a2a;
 }
 
 .tariff-item {
@@ -303,7 +303,7 @@ main {
   margin: 1vw;
   margin-top: -3.5vw;
   padding: 1.1vw;
-  background-color: #393939;
+  background-color: #414141;
   border-radius: 3.5vw;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   color: white;
@@ -441,6 +441,7 @@ main {
 @media (max-width: 1024px) {
   body {
     font-size: 1.4vw; /* Уменьшаем общий размер текста */
+    background-color: rgba(63, 63, 63);
   }
 
   header {
@@ -473,6 +474,26 @@ main {
     width: 90vw; /* Растягиваем блок почти на всю ширину */
     height: 80vw;
     margin: 10vw -15vw; /* Центрируем блок */
+    border-radius: 15vw;
+    padding: 1vw;
+  }
+
+  .order h1 {
+    font-size: 6.5vw;
+    margin:7vw 0;
+  }
+
+  .order p{
+    font-size: 5vw;
+    margin: 6vw 0;
+  }
+
+  .order .order-btn {
+    margin: 9vw auto;
+    font-size: 6vw;
+    border: 0.4vw solid #333;
+    border-radius: 15vw;
+    padding: 2.5vw 4vw;
   }
 
   .calculate-btn {
@@ -480,45 +501,37 @@ main {
     display: none;
   }
 
-  .where-we-work {
-    margin-left: 0; /* Убираем смещение */
-    padding: 10px;
-  }
+  
 
   .why-choose-us {
-    margin: 0 auto;
-    width: 90%;
-    padding: 15px;
-    border-radius: 10px;
-    max-height: 350px;
-    border-radius: 0 0 20px 20px;
+    margin: 40vw 0vw;
+    width: 80vw;
+    padding: 2vw;
+    border-radius: 1vw;
+    height: 70vw;
+    border-radius: 0vw 15vw 15vw 0vw;
+    background-color: rgba(45, 45, 45)
   }
 
-  .where-we-work-image {
-    width: 40%;
-    filter: brightness(70%);
-    border-radius: 50px;
-    object-fit: cover;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    margin-right: -100px;
-  } 
+  
   .why-choose-us-image {
-    width: 100%;
-    max-height: 120px;
-    border-radius: 30px;
+    width: 60vw;
+    height: 60vw;
+    border-radius: 15vw 0vw 0vw 15vw;
     filter: brightness(70%);
     object-fit: cover;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     position: absolute;
-    left: -20%;
-    top: 115%;
+    left: 53vw;
+    top: 5vw;
   }
 
   .why-choose-us h2 {
-    font-size: 1.6rem;
-    margin-bottom: 35px;
-    margin-top: 20px;
-    text-align: center;
+    font-size: 7vw;
+    margin-bottom: 15vw;
+    margin-top: -30vw;
+    text-align: left;
+
 }
 
   .why-choose-us-content {
@@ -528,10 +541,10 @@ main {
   }
 
   .why-choose-us-list {
-    font-size: 1.2rem; /* Уменьшаем размер текста списка */
-    line-height: 1.8; /* Уменьшаем межстрочный интервал */
-    text-align: center; /* Центрируем текст */
-    margin-left: 0; /* Убираем смещение списка */
+    font-size: 5vw; /* Уменьшаем размер текста списка */
+    line-height: 13vw; /* Уменьшаем межстрочный интервал */
+    text-align: left; /* Центрируем текст */
+    margin-left: -24vw; /* Убираем смещение списка */
   }
 
   .why-choose-us-list li {
@@ -540,25 +553,140 @@ main {
     text-align: left;
 }
 
+  .where-we-work {
+    display: flex;
+    align-items: center;
+    margin-top: 15vw;
+    padding: 2vw;
+    background-color: rgba(45, 45, 45);
+    width: 100vw;
+    height: 60vw;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: visible;
+    flex-direction: row-reverse;
+  }
+  
+  .where-we-work-image {
+    width: 50vw;
+    height: 50vw;
+    filter: brightness(70%);
+    border-radius: 0vw 15vw 15vw 0vw;
+    object-fit: cover;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-left: -30vw;
+    background-image: url("images/mob-citys.png");
+  }
+
   .where-we-work h2 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.8rem;
+    font-size: 8vw;
     font-weight: 700;
     color: white;
     margin-bottom: 20px;
+    text-align: right;
+    line-height: 10vw;
+    margin-right: 0vw;
+    
   }
 
   .more-info-btn {
     display: inline-block;
-    padding: 15px 25px;
+    padding: 2.5vw 3vw;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
+    font-size: 5vw;
     font-weight: 500;
-    background-color: #e6e6e6;
+    background-color: rgba(242, 242, 242);
     color: black;
     border: none;
-    border-radius: 30px;
+    border-radius: 15vw;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 12vw;
+    margin-left: 25vw;
+    width: 50vw;
   }
+
+  .tariffs{
+    margin-top: 30vw;
+    
+  }
+
+  .tarrif-header{
+    height: 17vw;
+    width: 77vw;
+    border-radius: 15vw 0vw 0vw 15vw;
+    margin: 0vw 25vw;
+    background-color: rgba(45, 45, 45);
+  }
+
+  .tarrif-header h2{
+    margin-left: -15vw;
+    padding: 2vw;
+    color: white;
+    margin-top: 0vw;
+    font-size: 8vw;
+  }
+
+  .tariffs-image{
+    height: 115vw;
+    top: 53.5vw;
+    z-index: -1;
+  }
+  
+  .tariffs-content{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30vw;
+    width: 50vw;
+    height: 85vw;
+    margin-left: -3vw;
+    background-color: #333333c9;
+    margin-top: 15vw;
+    border-radius: 0vw 15vw 15vw 0vw;
+  }
+
+  .tariff-item{
+    width: 76vw;
+    height: 21vw;
+    margin: -10vw;
+    padding: 7vw;
+    margin-left: auto;
+    background-color: #c08b18;
+    border-radius: 0vw 12.5vw 12.5vw 0vw;
+    box-shadow: 1vw 1vw 1vw rgba(0, 0, 0, 0.6);
+  }
+
+  .tariff-item h3 {
+    margin-right: 0vw;
+    color: #161616;
+    text-align: left;
+    font-size: 6vw
+  }
+  
+  .footer{
+    margin-top: -25vw;
+    background-image: url("images/mob-gadient.png");
+  }
+  .image-block4{
+    object-fit: cover;
+    background-color: #161616d3;
+  }
+
+  .image_block_tg{
+    background-color: #ececec;
+
+  }
+
+  .image_block_tel{
+    display: none
+  }
+
+  .image_block_vk{
+    background-color: #ececec;
+  }
+
+  .image_block_ws{
+    background-color: #ececec;
+  }
+  
 }
