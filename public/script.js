@@ -1,24 +1,3 @@
-document.getElementById("scrollButton").addEventListener("click", function() {
-    document.getElementById("tarifs").scrollIntoView({ behavior: "smooth" });
-});
-
-document.getElementById("details-btn").addEventListener("click", function(){
-    container = document.getElementById("container");
-    container.style.display = "flex";
-})
-
-document.getElementById("close-btn").addEventListener("click", function(){
-    container = document.getElementById("container");
-    container.style.display = "none";
-})
-
-
-document.getElementById("econom").addEventListener("click", function(){
-    orderBlock = document.getElementById("order-block");
-    orderBlock.style.display = "flex";
-})
-
-
 /*const map = L.map('map').setView([55.751244, 37.618423], 10); // Москва
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -84,3 +63,13 @@ L.Control.geocoder({
     map.fitBounds(poly.getBounds()); // Перемещение карты к результату поиска
 }).addTo(map);
 */
+
+// Функция для вычисления масштаба
+function updateScaleVariable() {
+  const scale = document.documentElement.clientWidth / window.innerWidth; // Берём обратное значение
+  document.documentElement.style.setProperty('--user-scale', scale);
+}
+
+// Обновляем переменную при загрузке страницы и изменении размера окна
+updateScaleVariable();
+window.addEventListener('resize', updateScaleVariable);
