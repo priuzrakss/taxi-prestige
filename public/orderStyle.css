@@ -1,0 +1,266 @@
+html, body {
+    overflow: hidden; /* Полностью отключает скролл */
+    height: 100%; /* Фиксирует высоту */
+    margin: 0;
+    padding: 0;
+}
+
+.box{
+    position: absolute; 
+    margin: 5vw auto;
+    background-color: #e9e9e9;
+    border-radius: 3.5vw 0vw 0vw 3.5vw;
+    color: black;
+    width: 37vw;
+    height: 40vw;
+    margin-top: 17vw;
+    box-shadow: 0vw 0.4vw 0.6vw rgba(0, 0, 0, 0.1);
+    top: -10vw;
+    left: 16vw;
+}
+
+.shadow_box{
+    position: relative; 
+    margin: 5vw auto;
+    padding: 1vw;
+    background-color: #2d2d2de1;
+    border-radius: 0vw 3.5vw 3.5vw 0vw;
+    width: 30vw;
+    height: 38vw;
+    margin-top: 17vw;
+    box-shadow: 0vw 0.4vw 0.6vw rgba(0, 0, 0, 0.4);
+    top: -10vw;
+    left: 19vw;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.image_box{
+    background-image: url('images/order-gradient.png');
+    position: absolute; 
+    margin: 5vw auto;
+    padding: 1vw;
+    border-radius: 0vw 3.5vw 3.5vw 0vw;
+    width: 30vw;
+    height: 38vw;
+    margin-top: 17vw;
+    top: -10vw;
+    left: 53vw;
+    overflow: hidden;
+    background-size: cover;
+}
+
+.box h1{
+    position: relative;
+    top: -1vw;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 2vw;
+    text-align: center;
+}
+
+.box h2 {
+    position: relative;
+    top: -2vw;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 2vw;
+    top: -1vw;
+    left: 20vw;
+}
+
+.box_ipt{
+    position: relative;
+    display: flex;           /* Включаем Flexbox */
+    align-items: center;     /* Выравниваем элементы по вертикали */
+    justify-content: center; /* Центрируем по горизонтали */
+    gap: 0.5vw;               /* Отступ между элементами */
+    position: absolute;
+    border-radius: 3.5vw;
+    width: 14vw;
+    height: 4.5vw;
+    background-color: black;
+    color: #e9e9e9;
+    top: 4.3vw;
+    left: 3.5vw;
+}
+
+.box_button_1, .box_button_2 {
+    position: relative;
+    width: 2vw;
+    height: 2vw;
+    border: 0vw;
+    background: black;
+    color: white;
+    border-radius: 3.5vw;
+    font-size: 1.6vw;
+    cursor: pointer;
+}
+
+.box_ipt h1{
+    position: relative;
+    text-align: center;
+    top: -0.2vw;
+    font-size: 2vw;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+.box_ipt_2{
+    position: absolute;
+    width: 33vw;
+    height: 28vw;
+    top: 10.5vw;
+    left: 2.2vw;
+    background-color: black;
+    border-radius: 3.5vw;
+}
+
+.typing-line {
+    position: relative;
+    top: -6vw;
+    left: 26vw;
+    font-family: monospace;
+    font-size: 2.4vw;
+    border-bottom: 0.2vw solid #000;
+    display: inline-block;
+    padding-bottom: 0.5vw;
+    min-width: 6vw;
+  }
+  
+  .cursor {
+    animation: blink 1s infinite;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .box h3{
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 2vw;
+    top: -10.5vw;
+    left: 33vw;
+  }
+
+.shadow_box h1{
+    position: relative;
+    text-align: center;
+    top: -1.5vw;
+    left: 0vw;
+    font-size: 1.8vw;
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.shadow_box h2{
+    position: relative;
+    top: -2.4vw;
+    left: 2vw;
+    font-size: 1.7vw;
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    line-height: 2.5vw;
+}
+
+.shadow_box h3{
+    position: relative;
+    text-align: center;
+    top: -3.5vw;
+    left: 0vw;
+    font-size: 1.8vw;
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.shadow_box h4{
+    position: relative;
+    top: -5.4vw;
+    left: 2vw;
+    font-size: 1.7vw;
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    line-height: 2.5vw;
+}
+
+.shadow_box h5{
+    position: relative;
+    text-align: center;
+    top: -5.5vw;
+    left: 0vw;
+    font-size: 1.8vw;
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.shadow_box h6{
+    position: relative;
+    top: -8.4vw;
+    left: 2vw;
+    font-size: 1.7vw;
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    line-height: 2.5vw;
+}
+
+.shadow_box_btn_1{
+    position: relative;
+    width: 20vw;
+    height: 3.5vw;
+    top: -11vw;
+    left: 11vw;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5vw; /* Размер текста кнопки */
+    font-weight: 500;
+    background-color: #5a5959c5;
+    color: white;
+    border: 0vw;
+    border-radius: 3.5vw 0vw 0vw 3.5vw;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.shadow_box_btn_2{
+    position: relative;
+    width: 20vw;
+    height: 3.5vw;
+    top: -9vw;
+    left: 5vw;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5vw;
+    font-weight: 500;
+    background-color: rgb(255 255 255);
+    color: #000000;
+    border: 0vw;
+    border-radius: 3.5vw;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.typing-line_1 {
+    position: relative;
+    top: -6vw;
+    left: 26vw;
+    font-family: monospace;
+    font-size: 2.4vw;
+    border-bottom: 0.2vw solid #f8f8f8;
+    display: inline-block;
+    padding-bottom: 0.5vw;
+    min-width: 6vw;
+  }
+
+
+
+body{
+    display: block;
+    margin: 0vw;
+}

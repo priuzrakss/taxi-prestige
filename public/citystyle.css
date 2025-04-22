@@ -1,0 +1,112 @@
+
+.container {
+    position: fixed;
+    top: 0vw;
+    left: 0vw;
+    width: 100vw;
+    height: 50vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    }
+    .city-block{
+      width: 90vw;
+      height: 45vw;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      border-radius: 4vw;
+    }
+    
+    .zb7-text{
+      margin-left: 6vw;
+      margin-top: -2vw;
+      font-size: 4vw;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+    
+    .citys{
+      display: flex;
+      margin-top: 2vw;
+      margin-left: 6.2vw;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 1vw;
+    }
+    
+    .city-list{
+      margin-left: 11.5vw;
+    }
+    
+    #close-btn{
+      margin-top: 1vw;
+      margin-left: 86vw;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 2.3vw;
+    }
+  
+    body{
+      display: block;
+      margin: 0vw;
+    }
+  
+  @media (max-width: 1024px) {
+    .container {
+      position: fixed;
+      top: -6vw;
+      left: 0vw;
+      width: 100vw;
+      height: 267vw;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+  
+    .city-block {
+      width: 90vw;
+      height: 240vw;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      border-radius: 10vw;
+    }
+  
+    #close-btn {
+      margin-top: 3vw;
+      margin-left: 76vw;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 9.3vw;
+    }
+  
+    .zb7-text {
+      margin-left: 6vw;
+      margin-top: 2vw;
+      font-size: 9vw;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+  
+    .citys {
+      display: flex;
+      margin-top: 3vw;
+      margin-left: 24.2vw;    ;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 5.3vw;
+      overflow: hidden;
+    }
+  
+    .city-list{
+      margin-left: 28.5vw;
+    }
+  
+  }
+  
+    

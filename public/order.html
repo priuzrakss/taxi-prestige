@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>order</title>
+    <link rel="stylesheet" href="orderStyle.css">
+</head>
+<body>
+    <section class="box">
+        <h1>Тариф</h1>
+        <section class="box_ipt">
+            <button class="box_button_1"><</button>
+            <h1>Эконом</h1>
+            <button class="box_button_2">></button>
+        </section>
+        <h2>Цена:</h2>
+        <section class="box_ipt_2" id="map"></section>
+        <div class="typing-line">
+            <span id="typed-text"></span>
+            <span class="cursor">|</span>
+        </div>
+        <h3>р.</h3>          
+    </section>
+    <section class="shadow_box">
+        <h1>Адресс</h1>
+        <p><h2>Откуда:<br>Куда:</h2></p>
+        <p><h3>Дата</h3></p>
+        <p><h4>Дата:<br>Время:</h4></p>
+        <p><h5>Контактные данные</h5></p>
+        <p><h6>Имя:<br>Номер телефона:</h6></p>
+        <button class="shadow_box_btn_1">Указать комментарий</button>
+        <button class="shadow_box_btn_2">Заказать</button>
+        <div class="typing-line_1">
+            <span id="typed-text"></span>
+            <span class="cursor">|</span>
+        </div>
+    </section>
+    <section class="image_box"></section>
+</body>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script src="map.js"></script>
+</html>
