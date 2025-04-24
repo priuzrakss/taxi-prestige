@@ -25,6 +25,9 @@ app.use(cors({
     origin: 'https://prestige-taxiclub.ru' // Разрешить запросы только с этого домена
 }));
 
+// Обработка preflight-запросов (OPTIONS)
+app.options('*', cors());
+
 // Ограничение: не более 1 запроса в 30 секунд с одного IP
 const orderLimiter = rateLimit({
     windowMs: 30 * 1000, // 30 секунд
@@ -73,7 +76,6 @@ app.get('/order', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'order.html'));
 });
 
-// Маршрут для главной страницы
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
