@@ -304,7 +304,7 @@ document.querySelector('.shadow_box_btn_2').addEventListener('click', () => {
     document.querySelector('.shadow_box_btn_2').disabled = true;
 
     // Отправляем данные на сервер
-    fetch('http://localhost:3000/api/order', {
+    fetch('http://193.187.96.194:3000/api/order', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
