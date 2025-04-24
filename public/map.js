@@ -315,12 +315,14 @@ document.querySelector('.shadow_box_btn_2').addEventListener('click', () => {
         if (response.ok) {
             showMessage('Заказ успешно отправлен!', 'success');
         } else {
-            showMessage('Ошибка при отправке заказа.', 'error');
+            return response.json().then(err => {
+                throw new Error(err.message || 'Ошибка при отправке заказа.');
+            });
         }
     })
     .catch(error => {
         console.error('Ошибка:', error);
-        showMessage('Ошибка при отправке заказа.', 'error');
+        showMessage(`Ошибка при отправке заказа: ${error.message}`, 'error');
     })
     .finally(() => {
         // Устанавливаем таймер на 30 секунд

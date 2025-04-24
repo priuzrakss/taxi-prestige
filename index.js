@@ -35,6 +35,7 @@ const orderLimiter = rateLimit({
 
 // Применяем ограничение к маршруту /api/order
 app.post('/api/order', orderLimiter, (req, res) => {
+    console.log('Полученные данные:', req.body);
     const orderData = req.body; // Получаем данные из тела запроса
 
     // Используем orderData
@@ -95,4 +96,22 @@ fetch('https://prestige-taxiclub.ru/api/order', {
 .catch(error => {
     console.error('Ошибка:', error);
     showMessage('Ошибка при отправке заказа.', 'error');
+});
+
+// Разрешить запросы с любого источника
+app.use(cors());
+
+// Или разрешить запросы только с определенного домена
+app.use(cors({
+    origin: 'https://prestige-taxiclub.ru' // Замените на ваш домен
+}));
+
+// Ваши маршруты
+app.get('/', (req, res) => {
+    res.send('CORS настроен!');
+});
+
+// Запуск сервера
+app.listen(3000, () => {
+    console.log('Сервер запущен на порту 3000');
 });
