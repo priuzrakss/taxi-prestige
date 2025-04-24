@@ -203,11 +203,11 @@ document.getElementById('close_popup').addEventListener('click', function() {
 
 
 const tariffs = [
-    { name: 'Эконом', price: 30 },
-    { name: 'Комфорт', price: 35 },
-    { name: 'Комфорт +', price: 45 },
-    { name: 'Бизнес', price: 55 },
-    { name: 'Минивен', price: 50 }
+    { name: 'эконом', price: 30 },
+    { name: 'комфорт', price: 35 },
+    { name: 'комфорт +', price: 45 },
+    { name: 'бизнес', price: 55 },
+    { name: 'минивен', price: 50 }
 ];
 
 // Индекс текущего тарифа
@@ -254,7 +254,14 @@ document.getElementById('back_btn').addEventListener('click', function () {
 // Инициализация текста при загрузке
 updateTariffDisplay();
 
+let isOrderButtonDisabled = false;
+
 document.querySelector('.shadow_box_btn_2').addEventListener('click', () => {
+    if (isOrderButtonDisabled) {
+        showMessage('Пожалуйста, подождите перед отправкой следующего заказа.', 'error');
+        return;
+    }
+
     // Собираем данные из полей
     const fromAddress = document.getElementById('from-address').value;
     const toAddress = document.getElementById('to-address').value;
@@ -268,7 +275,14 @@ document.querySelector('.shadow_box_btn_2').addEventListener('click', () => {
 
     // Проверяем, что обязательные поля заполнены
     if (!fromAddress || !toAddress || !date || !time || !name || !phone) {
-        alert('Пожалуйста, заполните все обязательные поля.');
+        showMessage('Пожалуйста, заполните все обязательные поля.', 'error');
+        return;
+    }
+
+    // Проверка номера телефона
+    const phoneRegex = /^\+7\d{10}$/; // Формат: +7 и 10 цифр
+    if (!phoneRegex.test(phone)) {
+        showMessage('Введите корректный номер телефона в формате +7XXXXXXXXXX.', 'error');
         return;
     }
 
@@ -285,8 +299,12 @@ document.querySelector('.shadow_box_btn_2').addEventListener('click', () => {
         price
     };
 
+    // Блокируем кнопку отправки
+    isOrderButtonDisabled = true;
+    document.querySelector('.shadow_box_btn_2').disabled = true;
+
     // Отправляем данные на сервер
-    fetch('http://localhost:3000/api/order', { // Замените URL на ваш серверный эндпоинт
+    fetch('http://localhost:3000/api/order', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -295,14 +313,21 @@ document.querySelector('.shadow_box_btn_2').addEventListener('click', () => {
     })
     .then(response => {
         if (response.ok) {
-            alert('Заказ успешно отправлен!');
+            showMessage('Заказ успешно отправлен!', 'success');
         } else {
-            alert('Ошибка при отправке заказа.');
+            showMessage('Ошибка при отправке заказа.', 'error');
         }
     })
     .catch(error => {
         console.error('Ошибка:', error);
-        alert('Ошибка при отправке заказа.');
+        showMessage('Ошибка при отправке заказа.', 'error');
+    })
+    .finally(() => {
+        // Устанавливаем таймер на 30 секунд
+        setTimeout(() => {
+            isOrderButtonDisabled = false;
+            document.querySelector('.shadow_box_btn_2').disabled = false;
+        }, 30000); // 30 секунд
     });
 });
 
@@ -336,3 +361,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+function showMessage(message, type = 'error') {
+    const messageBox = document.getElementById('message-box');
+    messageBox.textContent = message;
+
+    // Устанавливаем класс для типа сообщения
+    messageBox.className = `message-box ${type}`;
+    messageBox.classList.remove('hidden');
+
+    // Показываем сообщение
+    setTimeout(() => {
+        messageBox.style.opacity = '1';
+        messageBox.style.transform = 'translateY(0)';
+    }, 10);
+
+    // Скрываем сообщение через 3 секунды
+    setTimeout(() => {
+        messageBox.style.opacity = '0';
+        messageBox.style.transform = 'translateY(-20px)';
+        setTimeout(() => {
+            messageBox.classList.add('hidden');
+        }, 300);
+    }, 3000);
+}

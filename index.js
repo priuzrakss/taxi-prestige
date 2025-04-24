@@ -2,6 +2,8 @@ require('dotenv').config(); // Подключение dotenv
 const express = require('express');
 const path = require('path');
 const TelegramBot = require('node-telegram-bot-api');
+const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = 3000;
@@ -20,13 +22,22 @@ bot.onText(/\/start/, (msg) => {
 // === Настройка статического сервера ===
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json()); // Для обработки JSON-запросов
+app.use(cors({
+    origin: 'https://prestige-taxiclub.ru' // Разрешить запросы только с этого домена
+}));
 
-// Обработчик POST-запроса для получения данных заказа
-app.post('/api/order', (req, res) => {
-  const { fromAddress, toAddress, date, time, name, phone, comment, tariff, price } = req.body;
+// Ограничение: не более 1 запроса в 30 секунд с одного IP
+const orderLimiter = rateLimit({
+    windowMs: 30 * 1000, // 30 секунд
+    max: 1, // Максимум 1 запрос
+    message: { message: 'Слишком много запросов. Пожалуйста, попробуйте позже.' }
+});
 
-  // Формируем сообщение для Telegram
-  const message = `
+// Применяем ограничение к маршруту /api/order
+app.post('/api/order', orderLimiter, (req, res) => {
+    const { fromAddress, toAddress, date, time, name, phone, comment, tariff, price } = req.body;
+
+    const message = `
 🚖 *Новый заказ*:
 - *Тариф*: ${tariff}
 - *Откуда*: ${fromAddress}
@@ -37,22 +48,22 @@ app.post('/api/order', (req, res) => {
 - *Телефон*: ${phone}
 - *Комментарий*: ${comment || 'Нет'}
 - *Цена*: ${price}
-  `;
+    `;
 
-  // Отправляем сообщение всем пользователям
-  const sendPromises = Array.from(userChatIds).map(chatId =>
-    bot.sendMessage(chatId, message, { parse_mode: 'Markdown' })
-  );
+    // Отправляем сообщение всем пользователям
+    const sendPromises = Array.from(userChatIds).map(chatId =>
+        bot.sendMessage(chatId, message, { parse_mode: 'Markdown' })
+    );
 
-  Promise.all(sendPromises)
-    .then(() => {
-      console.log('Сообщения отправлены всем пользователям');
-      res.json({ message: 'Заказ успешно отправлен' });
-    })
-    .catch(error => {
-      console.error('Ошибка отправки сообщений в Telegram:', error);
-      res.status(500).json({ message: 'Ошибка отправки заказа' });
-    });
+    Promise.all(sendPromises)
+        .then(() => {
+            console.log('Сообщения отправлены всем пользователям');
+            res.json({ message: 'Заказ успешно отправлен' });
+        })
+        .catch(error => {
+            console.error('Ошибка отправки сообщений в Telegram:', error);
+            res.status(500).json({ message: 'Ошибка отправки заказа' });
+        });
 });
 
 // Обработчики для страниц
@@ -71,4 +82,23 @@ app.get('/order', (req, res) => {
 // === Запуск сервера ===
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
+});
+
+fetch('https://prestige-taxiclub.ru/api/order', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(orderData)
+})
+.then(response => {
+    if (response.ok) {
+        showMessage('Заказ успешно отправлен!', 'success');
+    } else {
+        showMessage('Ошибка при отправке заказа.', 'error');
+    }
+})
+.catch(error => {
+    console.error('Ошибка:', error);
+    showMessage('Ошибка при отправке заказа.', 'error');
 });

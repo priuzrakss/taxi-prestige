@@ -418,7 +418,31 @@ button {
     font-family: 'Montserrat', sans-serif;
 }
 
+/* Стили для месседж-бокса */
+.message-box {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 15px 20px;
+    background-color: #f44336; /* Красный цвет для ошибок */
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
 
+.message-box.success {
+    background-color: #4CAF50; /* Зеленый цвет для успеха */
+}
+
+.message-box.hidden {
+    display: none;
+}
 
 @media (max-width: 1024px) {
     .box_ipt{
