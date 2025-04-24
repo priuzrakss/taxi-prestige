@@ -320,11 +320,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Если нужно обновить цену за км
         const tariffs = {
-            econom: 30,
-            comfort: 35,
-            'comfort-plus': 45,
-            buissnes: 55,
-            minivan: 50
+            "эконом": 30,
+            "комфорт": 35,
+            'комфорт+': 45,
+            "бизнесс": 55,
+            "минивен": 50
         };
 
         const pricePerKm = tariffs[selectedTariff];
