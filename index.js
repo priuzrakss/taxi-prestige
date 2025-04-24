@@ -10,7 +10,6 @@ const PORT = 3000;
 
 // === Настройка Telegram-бота ===
 const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
-const chatId = process.env.TELEGRAM_CHAT_ID;
 const userChatIds = new Set(); // Хранилище уникальных chatId
 
 bot.onText(/\/start/, (msg) => {
@@ -33,11 +32,9 @@ const orderLimiter = rateLimit({
     message: { message: 'Слишком много запросов. Пожалуйста, попробуйте позже.' }
 });
 
-let orderData = null; // Инициализация переменной
-
 // Применяем ограничение к маршруту /api/order
 app.post('/api/order', orderLimiter, (req, res) => {
-    orderData = req.body || {}; // Получаем данные из тела запроса или устанавливаем пустой объект
+    const orderData = req.body || {}; // Получаем данные из тела запроса или устанавливаем пустой объект
 
     console.log('Полученные данные:', orderData);
 
@@ -72,29 +69,16 @@ app.post('/api/order', orderLimiter, (req, res) => {
 });
 
 // Обработчики для страниц
-app.get('/map', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'map.html'));
-});
-
-app.get('/citys', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'citys.html'));
-});
-
 app.get('/order', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'order.html'));
+});
+
+// Маршрут для главной страницы
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // === Запуск сервера ===
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
-});
-
-// Ваши маршруты
-app.get('/', (req, res) => {
-    res.send('CORS настроен!');
-});
-
-// Запуск сервера
-app.listen(3000, () => {
-    console.log('Сервер запущен на порту 3000');
 });
