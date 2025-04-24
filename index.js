@@ -54,10 +54,19 @@ app.post('/api/order', orderLimiter, (req, res) => {
 - *Цена*: ${orderData.price || 'Не указано'}
     `;
 
-    bot.sendMessage(chatId, message, { parse_mode: 'Markdown' })
-        .then(() => res.json({ message: 'Заказ успешно отправлен' }))
+    // Отправляем сообщение всем пользователям из userChatIds
+    const sendPromises = Array.from(userChatIds).map(chatId =>
+        bot.sendMessage(chatId, message, { parse_mode: 'Markdown' })
+    );
+
+    // Ждем завершения всех отправок
+    Promise.all(sendPromises)
+        .then(() => {
+            console.log('Сообщения отправлены всем пользователям');
+            res.json({ message: 'Заказ успешно отправлен' });
+        })
         .catch(error => {
-            console.error('Ошибка отправки сообщения:', error);
+            console.error('Ошибка отправки сообщений в Telegram:', error);
             res.status(500).json({ message: 'Ошибка отправки заказа' });
         });
 });
