@@ -80,15 +80,6 @@ app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
 
-
-// Разрешить запросы с любого источника
-app.use(cors());
-
-// Или разрешить запросы только с определенного домена
-app.use(cors({
-    origin: 'https://prestige-taxiclub.ru' // Замените на ваш домен
-}));
-
 // Ваши маршруты
 app.get('/', (req, res) => {
     res.send('CORS настроен!');
