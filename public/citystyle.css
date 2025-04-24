@@ -6,7 +6,7 @@
     width: 100vw;
     height: 50vw;
     background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 200;
@@ -15,6 +15,7 @@
       width: 90vw;
       height: 45vw;
       background: white;
+      color: black;
       display: flex;
       flex-direction: column;
       border-radius: 4vw;
@@ -47,12 +48,10 @@
       font-family: 'Montserrat', sans-serif;
       font-weight: 500;
       font-size: 2.3vw;
+      cursor: pointer;
+      z-index: 100;
     }
-  
-    body{
-      display: block;
-      margin: 0vw;
-    }
+
   
   @media (max-width: 1024px) {
     .container {
@@ -62,19 +61,23 @@
       width: 100vw;
       height: 267vw;
       background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       z-index: 200;
+      white-space: nowrap; /* Убираем перенос строк */
     }
   
     .city-block {
       width: 90vw;
-      height: 240vw;
+      height: 212vw;
       background: white;
-      display: flex;
       flex-direction: column;
       border-radius: 10vw;
+      display: inline-block; /* Чтобы элементы были расположены в строку */
+      margin-right: 10px; /* Расстояние между элементами */
+      padding: 10px; /* Внутренний отступ */
+      border: 1px solid #ccc; /* Для визуального разделения */
     }
   
     #close-btn {
@@ -88,19 +91,19 @@
     .zb7-text {
       margin-left: 6vw;
       margin-top: 2vw;
-      font-size: 9vw;
+      font-size: 5.5vw;
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
     }
   
     .citys {
+      overflow-x: auto; /* Включаем горизонтальный скролл */
       display: flex;
       margin-top: 3vw;
-      margin-left: 24.2vw;    ;
+      margin-left: 2.5vw;    ;
       font-family: 'Montserrat', sans-serif;
       font-weight: 500;
       font-size: 5.3vw;
-      overflow: hidden;
     }
   
     .city-list{

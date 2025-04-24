@@ -1,104 +1,338 @@
 // Инициализация карты
-const map = L.map('map').setView([55.751244, 37.618423], 13); // Координаты Москвы
-
-// Добавление слоя карты (OpenStreetMap)
+var map = L.map('map').setView([55.7558, 37.6173], 10); // Москва
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: '© OpenStreetMap'
+    attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// Маркеры для начальной и конечной точек
-let startMarker, endMarker;
+// Переменные для хранения маркеров и линии маршрута
+var markers = [];
+var routeLine = null;
 
-// Добавление маршрута
-const routingControl = L.Routing.control({
-  waypoints: [],
-  routeWhileDragging: true,
-  showAlternatives: true,
-  geocoder: L.Control.Geocoder.nominatim(),
-  createMarker: function(i, waypoint, n) {
-    const marker = L.marker(waypoint.latLng, {
-      draggable: true
-    });
-    marker.on('dragend', updateRoute);
-    return marker;
-  }
-}).addTo(map);
+// Пользовательский контрол для кнопки "Моё местоположение"
+var locateControl = L.Control.extend({
+    options: { position: 'topright' }, // Позиция кнопки
 
-// Обновление маршрута при перемещении маркеров
-function updateRoute() {
-  const waypoints = routingControl.getWaypoints();
-  routingControl.setWaypoints(waypoints.map(wp => wp.latLng));
+    onAdd: function (map) {
+        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+
+        container.style.backgroundColor = 'white';
+        container.style.width = '30px';
+        container.style.height = '30px';
+        container.style.cursor = 'pointer';
+
+        container.innerHTML = '<i style="line-height:30px; font-size:16px; text-align:center; display:block;">📍</i>';
+
+        container.onclick = function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    addMarker([lat, lng]);
+                    map.setView([lat, lng], 13); // Центр карты на местоположение
+                }, function () {
+                    console.log('Не удалось получить местоположение');
+                });
+            } else {
+                console.log('Geolocation не поддерживается');
+            }
+        };
+
+        return container;
+    }
+});
+map.addControl(new locateControl());
+
+// Функция обратного геокодирования
+function reverseGeocode(latlng, inputId) {
+    const geocodeUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latlng.lat}&lon=${latlng.lng}`;
+
+    fetch(geocodeUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.display_name) {
+                document.getElementById(inputId).value = data.display_name; // Заполняем поле адреса
+            } else {
+                console.log('Не удалось получить адрес');
+            }
+        })
+        .catch(error => console.error('Ошибка обратного геокодирования:', error));
 }
 
-// Добавление начальной и конечной точек
-map.on('click', function(e) {
-  if (!startMarker) {
-    startMarker = L.marker(e.latlng, { draggable: true }).addTo(map);
-    routingControl.spliceWaypoints(0, 1, e.latlng);
-    startMarker.on('dragend', function() {
-      routingControl.spliceWaypoints(0, 1, startMarker.getLatLng());
+// Функция обработки ввода текста и выполнения поиска с предложениями
+function handleAddressInputWithSuggestions(inputId, resultsId, markerIndex) {
+    document.getElementById(inputId).addEventListener('input', function (e) {
+        const query = e.target.value.trim();
+        const resultsContainer = document.getElementById(resultsId);
+
+        if (query.length > 2) {
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    resultsContainer.innerHTML = ''; // Очищаем предыдущие результаты
+
+                    data.forEach(location => {
+                        const li = document.createElement('li');
+                        li.textContent = location.display_name;
+                        li.addEventListener('click', () => {
+                            // Обновляем поле ввода выбранным адресом
+                            document.getElementById(inputId).value = location.display_name;
+
+                            // Добавляем или обновляем маркер
+                            const lat = parseFloat(location.lat);
+                            const lon = parseFloat(location.lon);
+                            if (markers[markerIndex]) {
+                                markers[markerIndex].setLatLng([lat, lon]); // Обновляем существующий маркер
+                            } else {
+                                addMarker([lat, lon]); // Добавляем новый маркер
+                            }
+
+                            map.setView([lat, lon], 13); // Центрируем карту на выбранный адрес
+                            updateRoute(); // Пересчитываем маршрут
+                            resultsContainer.innerHTML = ''; // Очищаем список результатов
+                        });
+                        resultsContainer.appendChild(li);
+                    });
+                })
+                .catch(error => console.error('Ошибка поиска адреса:', error));
+        } else {
+            resultsContainer.innerHTML = ''; // Очищаем список, если введено меньше 3 символов
+        }
     });
-  } else if (!endMarker) {
-    endMarker = L.marker(e.latlng, { draggable: true }).addTo(map);
-    routingControl.spliceWaypoints(routingControl.getWaypoints().length - 1, 1, e.latlng);
-    endMarker.on('dragend', function() {
-      routingControl.spliceWaypoints(routingControl.getWaypoints().length - 1, 1, endMarker.getLatLng());
+}
+
+// Функция добавления маркера
+function addMarker(latlng) {
+    // Если уже есть два маркера, удаляем первый (старый)
+    if (markers.length >= 2) {
+        map.removeLayer(markers[0]); // Удаляем маркер с карты
+        markers.shift(); // Удаляем маркер из массива
+    }
+
+    var marker = L.marker(latlng, { draggable: true }).addTo(map); // Создание нового маркера
+    markers.push(marker);
+
+    // Определяем, какое поле обновить (начало или конец маршрута)
+    if (markers.length === 1) {
+        reverseGeocode(latlng, 'from-address'); // Обновляем поле "Начало маршрута"
+    } else if (markers.length === 2) {
+        reverseGeocode(latlng, 'to-address'); // Обновляем поле "Конец маршрута"
+    }
+
+    updateRoute(); // Обновляем маршрут
+
+    // Обработчик события "dragend" для пересчёта маршрута и обновления поля ввода
+    marker.on('dragend', function () {
+        const newLatLng = marker.getLatLng();
+        if (markers[0] === marker) {
+            reverseGeocode(newLatLng, 'from-address'); // Обновляем поле "Начало маршрута"
+        } else if (markers[1] === marker) {
+            reverseGeocode(newLatLng, 'to-address'); // Обновляем поле "Конец маршрута"
+        }
+        updateRoute();
     });
-  }
+
+    // Удаление маркера по двойному клику
+    marker.on('dblclick', function () {
+        map.removeLayer(marker); // Удаляем маркер с карты
+        markers = markers.filter(m => m !== marker); // Удаляем маркер из массива
+        updateRoute(); // Пересчёт маршрута
+    });
+}
+
+// Функция отображения маршрута через OSRM
+function drawRouteWithOSRM(points) {
+    if (points.length < 2) return; // Маршрут строится только если есть две точки
+
+    const routeUrl = `https://router.project-osrm.org/route/v1/driving/${points.map(p => `${p.lng},${p.lat}`).join(';')}?overview=full&geometries=geojson`;
+
+    fetch(routeUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (routeLine) {
+                map.removeLayer(routeLine); // Удаляем предыдущий маршрут
+            }
+
+            const route = data.routes[0].geometry; // Получаем геометрию маршрута
+            routeLine = L.geoJSON(route, { color: 'blue', weight: 5 }).addTo(map); // Отображаем маршрут на карте
+
+            calculateDistanceAndPrice(data.routes[0].distance); // Передаем расстояние для расчета
+        })
+        .catch(error => console.error('Ошибка загрузки маршрута:', error));
+}
+
+// Функция пересчёта маршрута
+function updateRoute() {
+    const points = markers.map(marker => marker.getLatLng());
+    drawRouteWithOSRM(points); // Построение маршрута по точкам
+}
+
+// Функция расчёта стоимости
+function calculateDistanceAndPrice(distanceInMeters) {
+    const distanceInKm = distanceInMeters / 1000; // Перевод в километры
+    console.log(`Расстояние: ${distanceInKm.toFixed(2)} км`);
+
+    // Получаем текущий тариф
+    const currentTariff = tariffs[currentTariffIndex];
+    const pricePerKm = currentTariff.price;
+
+    // Расчет стоимости
+    const price = distanceInKm * pricePerKm;
+    document.getElementById('price').textContent = `${price.toFixed(2)} ₽`;
+}
+
+// Привязываем обработчики ввода текста к полям адресов
+handleAddressInputWithSuggestions('from-address', 'from-address-results', 0); // Поле "Начало маршрута"
+handleAddressInputWithSuggestions('to-address', 'to-address-results', 1);   // Поле "Конец маршрута"
+
+// Пример добавления маркера по клику на карту
+map.on('click', function (e) {
+    addMarker(e.latlng); // Добавление маркера на место клика
 });
 
-// Добавление поиска
-const searchControl = L.Control.geocoder({
-  defaultMarkGeocode: false
-}).on('markgeocode', function(e) {
-  const latlng = e.geocode.center;
-  map.setView(latlng, 13);
-  if (!startMarker) {
-    startMarker = L.marker(latlng, { draggable: true }).addTo(map);
-    routingControl.spliceWaypoints(0, 1, latlng);
-    startMarker.on('dragend', function() {
-      routingControl.spliceWaypoints(0, 1, startMarker.getLatLng());
-    });
-  } else if (!endMarker) {
-    endMarker = L.marker(latlng, { draggable: true }).addTo(map);
-    routingControl.spliceWaypoints(routingControl.getWaypoints().length - 1, 1, latlng);
-    endMarker.on('dragend', function() {
-      routingControl.spliceWaypoints(routingControl.getWaypoints().length - 1, 1, endMarker.getLatLng());
-    });
-  }
-}).addTo(map);
 
-// Обработчик события завершения построения маршрута
-routingControl.on('routesfound', function(e) {
-  const route = e.routes[0]; // Берем первый маршрут
-  const waypoints = route.waypoints;
-  const distance = route.summary.totalDistance / 1000; // Расстояние в километрах
-  const duration = route.summary.totalTime / 60; // Время в минутах
+document.getElementById('comment_btn').addEventListener('click', function() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'block';
+});
 
-  // Данные маршрута
-  const routeData = {
-    start: waypoints[0].latLng, // Начальная точка
-    end: waypoints[waypoints.length - 1].latLng, // Конечная точка
-    distance: distance.toFixed(2), // Расстояние
-    duration: duration.toFixed(2) // Время
-  };
+document.getElementById('close_popup').addEventListener('click', function() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'none';
+});
 
-  console.log('Маршрут:', routeData);
 
-  // Отправка данных на сервер
-  fetch('/route-data', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(routeData)
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Ответ от сервера:', data);
+
+const tariffs = [
+    { name: 'Эконом', price: 30 },
+    { name: 'Комфорт', price: 35 },
+    { name: 'Комфорт +', price: 45 },
+    { name: 'Бизнес', price: 55 },
+    { name: 'Минивен', price: 50 }
+];
+
+// Индекс текущего тарифа
+let currentTariffIndex = 0;
+
+// Элементы текста
+const tariffText = document.getElementById('tariff');
+const priceText = document.getElementById('price-to-km');
+
+// Функция обновления текста и пересчета цены
+function updateTariffDisplay() {
+    const currentTariff = tariffs[currentTariffIndex];
+    tariffText.textContent = `${currentTariff.name}`;
+    priceText.textContent = `${currentTariff.price}₽/км`;
+
+    // Если уже есть рассчитанное расстояние, пересчитать стоимость
+    if (markers.length === 2 && routeLine) {
+        const points = markers.map(marker => marker.getLatLng());
+        const routeUrl = `https://router.project-osrm.org/route/v1/driving/${points.map(p => `${p.lng},${p.lat}`).join(';')}?overview=false`;
+
+        fetch(routeUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.routes && data.routes[0]) {
+                    calculateDistanceAndPrice(data.routes[0].distance);
+                }
+            })
+            .catch(error => console.error('Ошибка пересчета маршрута:', error));
+    }
+}
+
+// Обработчик кнопки "Вперед"
+document.getElementById('next_btn').addEventListener('click', function () {
+    currentTariffIndex = (currentTariffIndex + 1) % tariffs.length; // Переход на следующий тариф
+    updateTariffDisplay(); // Обновляем тариф и пересчитываем цену
+});
+
+// Обработчик кнопки "Назад"
+document.getElementById('back_btn').addEventListener('click', function () {
+    currentTariffIndex = (currentTariffIndex - 1 + tariffs.length) % tariffs.length; // Переход на предыдущий тариф
+    updateTariffDisplay(); // Обновляем тариф и пересчитываем цену
+});
+
+// Инициализация текста при загрузке
+updateTariffDisplay();
+
+document.querySelector('.shadow_box_btn_2').addEventListener('click', () => {
+    // Собираем данные из полей
+    const fromAddress = document.getElementById('from-address').value;
+    const toAddress = document.getElementById('to-address').value;
+    const date = document.querySelector('.input_date').value;
+    const time = document.querySelector('.input_time').value;
+    const name = document.querySelector('.input_name').value;
+    const phone = document.querySelector('.input_tel').value;
+    const comment = document.getElementById('comment_input').value;
+    const tariff = document.getElementById('tariff').textContent;
+    const price = document.getElementById('price').textContent;
+
+    // Проверяем, что обязательные поля заполнены
+    if (!fromAddress || !toAddress || !date || !time || !name || !phone) {
+        alert('Пожалуйста, заполните все обязательные поля.');
+        return;
+    }
+
+    // Формируем объект данных
+    const orderData = {
+        fromAddress,
+        toAddress,
+        date,
+        time,
+        name,
+        phone,
+        comment,
+        tariff,
+        price
+    };
+
+    // Отправляем данные на сервер
+    fetch('http://localhost:3000/api/order', { // Замените URL на ваш серверный эндпоинт
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderData)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Заказ успешно отправлен!');
+        } else {
+            alert('Ошибка при отправке заказа.');
+        }
     })
     .catch(error => {
-      console.error('Ошибка при отправке данных:', error);
+        console.error('Ошибка:', error);
+        alert('Ошибка при отправке заказа.');
     });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Получаем параметры из URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedTariff = urlParams.get('tariff'); // Извлекаем параметр "tariff"
+
+    if (selectedTariff) {
+        // Устанавливаем выбранный тариф
+        const tariffDisplay = document.getElementById('tariff');
+        if (tariffDisplay) {
+            tariffDisplay.textContent = selectedTariff; // Отображаем выбранный тариф
+        }
+
+        // Если нужно обновить цену за км
+        const tariffs = {
+            econom: 30,
+            comfort: 35,
+            'comfort-plus': 45,
+            buissnes: 55,
+            minivan: 50
+        };
+
+        const pricePerKm = tariffs[selectedTariff];
+        if (pricePerKm) {
+            const priceDisplay = document.getElementById('price-to-km');
+            if (priceDisplay) {
+                priceDisplay.textContent = `Цена за км: ${pricePerKm}₽`;
+            }
+        }
+    }
 });
