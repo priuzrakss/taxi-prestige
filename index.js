@@ -33,26 +33,27 @@ const orderLimiter = rateLimit({
     message: { message: 'Слишком много запросов. Пожалуйста, попробуйте позже.' }
 });
 
+let orderData = null; // Инициализация переменной
+
 // Применяем ограничение к маршруту /api/order
 app.post('/api/order', orderLimiter, (req, res) => {
-    console.log('Полученные данные:', req.body);
-    const orderData = req.body; // Получаем данные из тела запроса
+    orderData = req.body || {}; // Получаем данные из тела запроса или устанавливаем пустой объект
 
-    // Используем orderData
+    console.log('Полученные данные:', orderData);
+
     const message = `
 🚖 *Новый заказ*:
-- *Тариф*: ${orderData.tariff}
-- *Откуда*: ${orderData.fromAddress}
-- *Куда*: ${orderData.toAddress}
-- *Дата*: ${orderData.date}
-- *Время*: ${orderData.time}
-- *Имя клиента*: ${orderData.name}
-- *Телефон*: ${orderData.phone}
+- *Тариф*: ${orderData.tariff || 'Не указано'}
+- *Откуда*: ${orderData.fromAddress || 'Не указано'}
+- *Куда*: ${orderData.toAddress || 'Не указано'}
+- *Дата*: ${orderData.date || 'Не указано'}
+- *Время*: ${orderData.time || 'Не указано'}
+- *Имя клиента*: ${orderData.name || 'Не указано'}
+- *Телефон*: ${orderData.phone || 'Не указано'}
 - *Комментарий*: ${orderData.comment || 'Нет'}
-- *Цена*: ${orderData.price}
+- *Цена*: ${orderData.price || 'Не указано'}
     `;
 
-    // Отправляем сообщение в Telegram
     bot.sendMessage(chatId, message, { parse_mode: 'Markdown' })
         .then(() => res.json({ message: 'Заказ успешно отправлен' }))
         .catch(error => {
@@ -79,24 +80,6 @@ app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
 
-fetch('https://prestige-taxiclub.ru/api/order', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(orderData)
-})
-.then(response => {
-    if (response.ok) {
-        showMessage('Заказ успешно отправлен!', 'success');
-    } else {
-        showMessage('Ошибка при отправке заказа.', 'error');
-    }
-})
-.catch(error => {
-    console.error('Ошибка:', error);
-    showMessage('Ошибка при отправке заказа.', 'error');
-});
 
 // Разрешить запросы с любого источника
 app.use(cors());
