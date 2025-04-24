@@ -2,7 +2,6 @@ require('dotenv').config(); // Подключение dotenv
 const express = require('express');
 const path = require('path');
 const TelegramBot = require('node-telegram-bot-api');
-const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 
 const app = express();
@@ -21,12 +20,6 @@ bot.onText(/\/start/, (msg) => {
 // === Настройка статического сервера ===
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json()); // Для обработки JSON-запросов
-app.use(cors({
-    origin: 'https://prestige-taxiclub.ru' // Разрешить запросы только с этого домена
-}));
-
-// Обработка preflight-запросов (OPTIONS)
-app.options('*', cors());
 
 // Ограничение: не более 1 запроса в 30 секунд с одного IP
 const orderLimiter = rateLimit({
