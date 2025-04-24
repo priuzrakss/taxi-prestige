@@ -35,33 +35,27 @@ const orderLimiter = rateLimit({
 
 // Применяем ограничение к маршруту /api/order
 app.post('/api/order', orderLimiter, (req, res) => {
-    const { fromAddress, toAddress, date, time, name, phone, comment, tariff, price } = req.body;
+    const orderData = req.body; // Получаем данные из тела запроса
 
+    // Используем orderData
     const message = `
 🚖 *Новый заказ*:
-- *Тариф*: ${tariff}
-- *Откуда*: ${fromAddress}
-- *Куда*: ${toAddress}
-- *Дата*: ${date}
-- *Время*: ${time}
-- *Имя клиента*: ${name}
-- *Телефон*: ${phone}
-- *Комментарий*: ${comment || 'Нет'}
-- *Цена*: ${price}
+- *Тариф*: ${orderData.tariff}
+- *Откуда*: ${orderData.fromAddress}
+- *Куда*: ${orderData.toAddress}
+- *Дата*: ${orderData.date}
+- *Время*: ${orderData.time}
+- *Имя клиента*: ${orderData.name}
+- *Телефон*: ${orderData.phone}
+- *Комментарий*: ${orderData.comment || 'Нет'}
+- *Цена*: ${orderData.price}
     `;
 
-    // Отправляем сообщение всем пользователям
-    const sendPromises = Array.from(userChatIds).map(chatId =>
-        bot.sendMessage(chatId, message, { parse_mode: 'Markdown' })
-    );
-
-    Promise.all(sendPromises)
-        .then(() => {
-            console.log('Сообщения отправлены всем пользователям');
-            res.json({ message: 'Заказ успешно отправлен' });
-        })
+    // Отправляем сообщение в Telegram
+    bot.sendMessage(chatId, message, { parse_mode: 'Markdown' })
+        .then(() => res.json({ message: 'Заказ успешно отправлен' }))
         .catch(error => {
-            console.error('Ошибка отправки сообщений в Telegram:', error);
+            console.error('Ошибка отправки сообщения:', error);
             res.status(500).json({ message: 'Ошибка отправки заказа' });
         });
 });
