@@ -445,26 +445,26 @@ button {
 }
 
 @media (max-width: 1024px) {
-    .box_ipt{
+    .box_ipt {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0.5vw;
         position: absolute;
-        border-radius: 3.5vw;
+        border-radius: 8.5vw;
         background-color: black;
         color: #e9e9e9;
-        width: 23vw;
-        height: 9vh;
-        margin-top: -0.5vw;
-        margin-left: 6.5vh;
+        width: 42vw;
+        height: 5vh;
+        margin-top: -7.5vw;
+        margin-left: 2vh;
     }
 
     .box {
         background-color: #e9e9e9;
         color: black;
         width: 100vw;
-        height: 140vh;
+        height: 153vh;
         border-radius: 0;
     }
     
@@ -510,6 +510,7 @@ button {
     }
 
     .shadow_box {
+        position: relative;
         padding: 1vw;
         background-color: #2d2d2de1;
         box-shadow: 0vw 0.4vw 0.6vw rgba(0, 0, 0, 0.4);
@@ -517,7 +518,7 @@ button {
         z-index: 1000;
         width: 100vw;
         height: 150vh;
-        margin-top: 0vw;
+        top: -4vw;
     }
 
     .image_box {
@@ -587,13 +588,13 @@ button {
         border-radius: 10vw 0vw 0vw 10vw;
         cursor: pointer;
         transition: background-color 0.3s ease;
-        margin-top: -1vh;
+        margin-top: -2vh;
         margin-left: 51vw;
     }
 
     .shadow_box_btn_2 {
-        width: 58vw;
-        height: 12.7vw;
+        width: 54vw;
+        height: 10.7vw;
         font-family: 'Montserrat', sans-serif;
         font-size: 5vw;
         font-weight: 500;
@@ -603,7 +604,7 @@ button {
         border-radius: 20vw;
         cursor: pointer;
         transition: background-color 0.3s ease;
-        margin-top: 0vh;
+        margin-top: -1vh;
         margin-left: -3vw;
     }
 
@@ -651,8 +652,8 @@ button {
     }
 
     #price-to-km {
-        margin-top: 9vh;
-        margin-left: 10.5vh;
+        margin-top: 6vh;
+        margin-left: 6.5vh;
         font-size: 2.7vw;
         font-family: 'Montserrat', sans-serif;
     }
