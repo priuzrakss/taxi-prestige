@@ -205,7 +205,7 @@ document.getElementById('close_popup').addEventListener('click', function() {
 const tariffs = [
     { name: 'эконом', price: 30 },
     { name: 'комфорт', price: 35 },
-    { name: 'комфорт +', price: 45 },
+    { name: 'комфорт+', price: 45 },
     { name: 'бизнес', price: 55 },
     { name: 'минивен', price: 50 }
 ];
@@ -336,21 +336,26 @@ document.querySelector('.shadow_box_btn_2').addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => {
     // Получаем параметры из URL
     const urlParams = new URLSearchParams(window.location.search);
-    const selectedTariff = urlParams.get('tariff'); // Извлекаем параметр "tariff"
+    let selectedTariff = urlParams.get('tariff'); // Извлекаем параметр "tariff"
+
+    // Преобразуем "комфорт+" в "комфорт_плюс" для соответствия id
+    if (selectedTariff === 'комфорт+') {
+        selectedTariff = 'комфорт_плюс';
+    }
 
     if (selectedTariff) {
         // Устанавливаем выбранный тариф
         const tariffDisplay = document.getElementById('tariff');
         if (tariffDisplay) {
-            tariffDisplay.textContent = selectedTariff; // Отображаем выбранный тариф
+            tariffDisplay.textContent = selectedTariff.replace('_плюс', '+'); // Отображаем "Комфорт+"
         }
 
         // Если нужно обновить цену за км
         const tariffs = {
             "эконом": 30,
             "комфорт": 35,
-            'комфорт+': 45,
-            "бизнесс": 55,
+            "комфорт_плюс": 40, // Используем обновленный id
+            "бизнес": 55,
             "минивен": 50
         };
 
