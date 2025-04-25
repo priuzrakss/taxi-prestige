@@ -445,7 +445,10 @@ button {
 }
 
 @media (max-width: 1024px) {
-    
+    body{
+        overflow-x: hidden;
+    }
+
     .box_ipt {
         display: flex;
         align-items: center;
@@ -605,7 +608,7 @@ button {
         border-radius: 3.5vw;
         box-shadow: 0vw 0.4vw 0.6vw rgba(0, 0, 0, 0.1);
         flex-direction: column;
-        overflow: y scroll;
+        overflow-y: scroll;
     }
 
     h1 {
