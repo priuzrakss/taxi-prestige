@@ -1,0 +1,6 @@
+User-agent: Yandex
+Disallow: /admin/
+Disallow: /private/
+Allow: /
+
+Sitemap: https://prestige-taxiclub.ru/sitemap.xml
