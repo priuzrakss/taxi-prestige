@@ -445,6 +445,7 @@ button {
 }
 
 @media (max-width: 1024px) {
+    
     .box_ipt {
         display: flex;
         align-items: center;
@@ -456,8 +457,8 @@ button {
         color: #e9e9e9;
         width: 42vw;
         height: 5vh;
-        margin-top: -7.5vw;
-        margin-left: 2vh;
+        margin-top: -3.5vh;
+        margin-left: 6vw;
     }
 
     .box {
@@ -474,21 +475,6 @@ button {
         font-weight: 800;
         font-size: 8.5vw;
         text-align: center;
-    }
-
-    .box_ipt {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5vw;
-        position: absolute;
-        border-radius: 8.5vw;
-        background-color: black;
-        color: #e9e9e9;
-        width: 42vw;
-        height: 5vh;
-        margin-top: -1.5vw;
-        margin-left: 2vh;
     }
 
     .box h2 {
@@ -517,8 +503,8 @@ button {
         overflow: hidden;
         z-index: 1000;
         width: 100vw;
-        height: 150vh;
-        top: -4vw;
+        height: 200vh;
+        top: 11vw;
     }
 
     .image_box {
@@ -615,7 +601,7 @@ button {
         display: flex;
         width: 100vw;
         height: 102vh;
-        background: rgb(94, 94, 94);
+        background: #e9e9e9;
         border-radius: 3.5vw;
         box-shadow: 0vw 0.4vw 0.6vw rgba(0, 0, 0, 0.1);
         flex-direction: column;
@@ -653,7 +639,7 @@ button {
 
     #price-to-km {
         margin-top: 6vh;
-        margin-left: 6.5vh;
+        margin-left: 7.5vh;
         font-size: 2.7vw;
         font-family: 'Montserrat', sans-serif;
     }
