@@ -383,12 +383,13 @@ button {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Тень для улучшения визуального восприятия */
 }
 
-.search-results li, .search-results li {
+.search-results li, .search-results2 li {
     padding: 8px;
+    text-overflow: ellipsis;
     cursor: pointer;
 }
 
-.search-results li, .search-results2 li:hover {
+.search-results li:hover , .search-results2 li:hover {
     background-color: rgba(22, 22, 22, 0.973);
 }
 
@@ -488,7 +489,7 @@ button {
         margin-left: 50vw;
     }
 
-        .box_ipt_2 {
+    .box_ipt_2 {
         position: absolute;
         width: 93vw;
         height: 30vh;
@@ -505,9 +506,10 @@ button {
         box-shadow: 0vw 0.4vw 0.6vw rgba(0, 0, 0, 0.4);
         overflow: hidden;
         z-index: 1000;
-        width: 100vw;
+        width: 98vw;
         height: 200vh;
-        top: 11vw;
+        margin-top: 10vh;
+        border-radius: 0;
     }
 
     .image_box {
@@ -516,8 +518,9 @@ button {
         background-size: cover;
         width: 100vw;
         height: 52vh;
-        margin-top: 49vh;
+        margin-top: 49.4vh;
         margin-left: 0vw;
+        border-radius: 0;
     }
 
     section {
@@ -696,4 +699,56 @@ button {
         border-radius: 5px;
         cursor: pointer;
     }
+
+    .search-results {
+        list-style: none;
+        padding: 0;
+        margin-left: -6vw;
+        margin-top: 0vw;
+        border-radius: 0vw 0vw 2.5vw 2.5vw;
+        max-height: 20vw;
+        overflow-y: auto;
+        background-color: rgba(32, 32, 32, 0.973);
+        position: absolute;
+        width: 56vw;
+        z-index: 1000;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .search-results2 {
+        list-style: none;
+        padding: 0;
+        margin-left: -6vw;
+        margin-top: 0vw;
+        border-radius: 0vw 0vw 2.5vw 2.5vw;
+        max-height: 20vw;
+        overflow-y: auto;
+        background-color: rgba(32, 32, 32, 0.973);
+        position: absolute;
+        width: 56vw;
+        z-index: 1000;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-results li, .search-results2 li:hover {
+        background-color: rgba(41, 41, 41, 0.788);
+    }
+    
+    .search-results li, .search-results2 li {
+        padding-bottom: 30vw;
+        cursor: pointer;
+    }
+
+    li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+        unicode-bidi: isolate;
+        height: 0vw;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 3.8vw;
+        font-weight: 400;
+    }
+
+    
+
 }
