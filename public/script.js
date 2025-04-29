@@ -1,75 +1,82 @@
-/*const map = L.map('map').setView([55.751244, 37.618423], 10); // Москва
+document.getElementById('more-info-btn').addEventListener('click', function() {
+    document.getElementById('container').style.display = 'flex';
+});
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
+document.getElementById('close-btn').addEventListener('click', function() {
+    document.getElementById('container').style.display = 'none';
+});
 
-let points = [];
-let markers = [];
+document.getElementById('order-btn').addEventListener('click', function() {
+    document.getElementById('tarrifs').scrollIntoView({ behavior: 'smooth' });
+});
 
-map.on('click', function (e) {
-    if (points.length < 2) {
-        const marker = L.marker(e.latlng, { draggable: true }).addTo(map);
-        markers.push(marker);
-        points.push(e.latlng);
+document.getElementById('order-btn1').addEventListener('click', function() {
+    document.getElementById('tarrifs').scrollIntoView({ behavior: 'smooth' });
+});
 
-        marker.on('dragend', function (event) {
-            const newLatLng = event.target.getLatLng();
-            const index = markers.indexOf(marker);
-            points[index] = newLatLng;
-            recalculateDistance();
+
+document.querySelectorAll('.link-block').forEach(link => {
+    link.addEventListener('click', function() {
+        const targetId = this.textContent.trim() === 'Где мы работает' ? 'where-we-work'
+                       : this.textContent.trim() === 'Почему выбирают нас' ? 'why-choose-us'
+                       : this.textContent.trim() === 'заказать такси' ? 'tarrifs'
+                       : null;
+
+        if (targetId) {
+            document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+
+function selectTariff(tariff) {
+    // Сохраняем выбранный тариф в localStorage
+    localStorage.setItem('selectedTariff', tariff);
+    // Переход на страницу /order
+    window.location.href = '/order';
+}
+
+// На странице /order можно извлечь выбранный тариф
+document.addEventListener('DOMContentLoaded', () => {
+    const selectedTariff = localStorage.getItem('selectedTariff');
+    if (selectedTariff) {
+        // Например, установить значение в соответствующий элемент
+        document.getElementById('tariff').innerText = `Выбранный тариф: ${selectedTariff}`;
+    }
+
+    document.querySelectorAll('.tariff-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const tariffId = item.id; // Получаем ID выбранного тарифа
+            window.location.href = `/order?tariff=${tariffId}`; // Переход на страницу с передачей тарифа через параметры URL
         });
+    });
 
-        if (points.length === 2) {
-            calculateDistance(points[0], points[1]);
+    // Получаем параметры из URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedTariffFromUrl = urlParams.get('tariff'); // Извлекаем параметр "tariff"
+
+    if (selectedTariffFromUrl) {
+        // Находим элемент для отображения тарифа
+        const tariffDisplay = document.getElementById('tariff');
+        if (tariffDisplay) {
+            tariffDisplay.textContent = `Выбранный тариф: ${selectedTariffFromUrl}`;
+        }
+
+        // Если нужно обновить цену за км
+        const tariffs = {
+            econom: 30,
+            comfort: 35,
+            'comfort-plus': 45,
+            buissnes: 55,
+            minivan: 50
+        };
+
+        const pricePerKm = tariffs[selectedTariffFromUrl];
+        if (pricePerKm) {
+            const priceDisplay = document.getElementById('price-to-km');
+            if (priceDisplay) {
+                priceDisplay.textContent = `Цена за км: ${pricePerKm}₽`;
+            }
         }
     }
 });
-
-function recalculateDistance() {
-    if (points.length === 2) {
-        calculateDistance(points[0], points[1]);
-    }
-}
-
-function calculateDistance(point1, point2) {
-    const R = 6371; // Радиус Земли
-    const dLat = (point2.lat - point1.lat) * (Math.PI / 180);
-    const dLng = (point2.lng - point1.lng) * (Math.PI / 180);
-    const a = Math.sin(dLat / 2) ** 2 +
-              Math.cos(point1.lat * (Math.PI / 180)) * Math.cos(point2.lat * (Math.PI / 180)) * Math.sin(dLng / 2) ** 2;
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c;
-    alert(`Расстояние между точками: ${distance.toFixed(2)} км`);
-}
-
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
-
-// Добавляем контроль поиска на карту
-L.Control.geocoder({
-    defaultMarkGeocode: false
-}).on('markgeocode', function(e) {
-    const bbox = e.geocode.bbox;
-    const poly = L.polygon([
-        [bbox.getSouthEast().lat, bbox.getSouthEast().lng],
-        [bbox.getNorthEast().lat, bbox.getNorthEast().lng],
-        [bbox.getNorthWest().lat, bbox.getNorthWest().lng],
-        [bbox.getSouthWest().lat, bbox.getSouthWest().lng]
-    ]).addTo(map);
-
-    map.fitBounds(poly.getBounds()); // Перемещение карты к результату поиска
-}).addTo(map);
-*/
-
-// Функция для вычисления масштаба
-function updateScaleVariable() {
-  const scale = document.documentElement.clientWidth / window.innerWidth; // Берём обратное значение
-  document.documentElement.style.setProperty('--user-scale', scale);
-}
-
-// Обновляем переменную при загрузке страницы и изменении размера окна
-updateScaleVariable();
-window.addEventListener('resize', updateScaleVariable);

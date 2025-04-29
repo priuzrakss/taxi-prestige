@@ -13,8 +13,10 @@ html, body {
 body {
   font-family: 'Montserrat', sans-serif;
   color: white;
+  z-index: -1;
   background-color: #333;
-  }
+  position: absolute;
+}
 
 
 header {
@@ -80,6 +82,7 @@ main {
   height: 33vw;
   margin-top: 17vw;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
 
 .order h1 {
@@ -262,7 +265,7 @@ main {
   color: white;
   width: 40vw;
   background: #414141;
-  border-radius: 0vw 1.7vw 1.7vw 0vw;
+  border-radius: 0vw 3vw 3vw 0vw;
   height: 7vw;
   padding: 2vw;
   text-align: center;
@@ -290,15 +293,15 @@ main {
   align-items: center;
   margin-top: 37vw;
   border-radius: 3.5vw;
-  width: 80vw;
+  width: 100vw;
   height: 5vw;
   margin-bottom: 0vw;
-  margin-left: 10vw;
+  margin-left: 0vw;
   background-color: #2b2a2a;
 }
 
 .tariff-item {
-  width: 23vw; /* Ширина элемента */
+  width: 18vw; /* Ширина элемента */
   height: 4vw;
   margin: 1vw;
   margin-top: -3.5vw;
@@ -313,7 +316,7 @@ main {
 .tariff-item h3 {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.5vw;
-  font-weight: 700;
+  font-weight: 500;
   color: #ffffff;
 }
 
@@ -388,15 +391,6 @@ main {
   margin-top: 0.25vw;
 }
 
-.image_block_vk{
-  background-color: rgb(0, 75, 189);
-  width: 2vw;
-  height: 2vw;
-  border-radius: 0.5vw;
-  margin-right: 0.5vw;
-  margin-top: 0.25vw;
-}
-
 .image_block_tel{
   background-color: rgb(43, 219, 96);
   width: 2vw;
@@ -409,32 +403,44 @@ main {
 .links{
   color: white;
   margin-left: 64vw;
-  margin-top: -20.9vw;
+  margin-top: -21.45vw;
   font-size: 2vw;
   font-weight: 300;
+  cursor: pointer;
 }
 
 .link-block{
+  position: relative;
   margin-top: 2vw;
   text-decoration: underline;
   text-decoration-thickness: 0vw;
   text-underline-offset: 0.5vw;
+  top: 5vw;
 }
 
 .zb6-text{
+  position: relative;
   color: white;
   font-weight: 500;
   font-size: 2.5vw;
   margin-bottom: 2vw;
   overflow: hidden;
   font-weight: 500;
+  top: 5vw;
 }
 
 .company{
+  position: relative;
   color: rgb(138, 138, 138);
   margin-top: 10vw;
   margin-left: 35vw;
   font-size: 1.5vw;
+  top: 4vw;
+}
+
+a {
+  text-decoration: none; /* Убирает подчеркивание */
+  color: inherit; /* Делает цвет ссылки таким же, как у обычного текста */
 }
 
 /* Адаптация для телефонов */
@@ -628,7 +634,7 @@ main {
   }
 
   .tariffs-image{
-    height: 115vw;
+    height: 135vw;
     top: 53.5vw;
     z-index: -1;
   }
@@ -636,7 +642,7 @@ main {
   .tariffs-content{
     display: flex;
     justify-content: space-around;
-    margin-bottom: 30vw;
+    margin-bottom: 45vw;
     width: 50vw;
     height: 85vw;
     margin-left: -3vw;
@@ -647,8 +653,9 @@ main {
 
   .tariff-item{
     width: 76vw;
-    height: 21vw;
+    height: 10vw;
     margin: -10vw;
+    margin-top: -5vw;
     padding: 7vw;
     margin-left: auto;
     background-color: #c08b18;
@@ -657,6 +664,7 @@ main {
   }
 
   .tariff-item h3 {
+    margin-top: -4vw;
     margin-right: 0vw;
     color: #161616;
     text-align: left;
@@ -679,10 +687,6 @@ main {
 
   .image_block_tel{
     display: none
-  }
-
-  .image_block_vk{
-    background-color: #ececec;
   }
 
   .image_block_ws{
