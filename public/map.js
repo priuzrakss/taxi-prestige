@@ -50,7 +50,19 @@ function reverseGeocode(latlng, inputId) {
         .then(response => response.json())
         .then(data => {
             if (data && data.display_name) {
-                document.getElementById(inputId).value = data.display_name; // Заполняем поле адреса
+                // Разбиваем полный адрес на части
+                const addressParts = data.display_name.split(',').map(part => part.trim());
+
+                // Извлекаем нужные части: адрес, номер дома и город
+                const filteredAddress = addressParts.slice(0, 3).join(', '); // Первые три части
+
+                // Заполняем поле адреса
+                const inputElement = document.getElementById(inputId);
+                if (inputElement) {
+                    inputElement.value = filteredAddress;
+                } else {
+                    console.error(`Поле с id "${inputId}" не найдено.`);
+                }
             } else {
                 console.log('Не удалось получить адрес');
             }
@@ -60,37 +72,67 @@ function reverseGeocode(latlng, inputId) {
 
 // Функция обработки ввода текста и выполнения поиска с предложениями
 function handleAddressInputWithSuggestions(inputId, resultsId, markerIndex) {
+    let userLocation = null;
+
+    // Получаем местоположение пользователя
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            userLocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+        }, function () {
+            console.log('Не удалось получить местоположение');
+        });
+    }
+
     document.getElementById(inputId).addEventListener('input', function (e) {
         const query = e.target.value.trim();
         const resultsContainer = document.getElementById(resultsId);
 
         if (query.length > 2) {
-            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`)
+            // Вычисляем границы (viewbox) для поиска в пределах 10 км, если местоположение доступно
+            let viewbox = '';
+            if (userLocation) {
+                const lat = userLocation.lat;
+                const lng = userLocation.lng;
+                const delta = 0.1; // Примерное значение для 10 км (в градусах)
+
+                viewbox = `&viewbox=${lng - delta},${lat - delta},${lng + delta},${lat + delta}&bounded=1`;
+            }
+
+            // Добавляем параметр addressdetails=1 для получения детализированной информации
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(query)}&countrycodes=ru${viewbox}`)
                 .then(response => response.json())
                 .then(data => {
                     resultsContainer.innerHTML = ''; // Очищаем предыдущие результаты
 
                     data.forEach(location => {
-                        const li = document.createElement('li');
-                        li.textContent = location.display_name;
-                        li.addEventListener('click', () => {
-                            // Обновляем поле ввода выбранным адресом
-                            document.getElementById(inputId).value = location.display_name;
+                        const { address } = location;
 
-                            // Добавляем или обновляем маркер
-                            const lat = parseFloat(location.lat);
-                            const lon = parseFloat(location.lon);
-                            if (markers[markerIndex]) {
-                                markers[markerIndex].setLatLng([lat, lon]); // Обновляем существующий маркер
-                            } else {
-                                addMarker([lat, lon]); // Добавляем новый маркер
-                            }
+                        // Фильтруем только города, поселки или точные совпадения
+                        if (address && (address.city || address.town || address.village)) {
+                            const li = document.createElement('li');
+                            li.textContent = location.display_name;
+                            li.addEventListener('click', () => {
+                                // Обновляем поле ввода выбранным адресом
+                                document.getElementById(inputId).value = location.display_name;
 
-                            map.setView([lat, lon], 13); // Центрируем карту на выбранный адрес
-                            updateRoute(); // Пересчитываем маршрут
-                            resultsContainer.innerHTML = ''; // Очищаем список результатов
-                        });
-                        resultsContainer.appendChild(li);
+                                // Добавляем или обновляем маркер
+                                const lat = parseFloat(location.lat);
+                                const lon = parseFloat(location.lon);
+                                if (markers[markerIndex]) {
+                                    markers[markerIndex].setLatLng([lat, lon]); // Обновляем существующий маркер
+                                } else {
+                                    addMarker([lat, lon]); // Добавляем новый маркер
+                                }
+
+                                map.setView([lat, lon], 13); // Центрируем карту на выбранный адрес
+                                updateRoute(); // Пересчитываем маршрут
+                                resultsContainer.innerHTML = ''; // Очищаем список результатов
+                            });
+                            resultsContainer.appendChild(li);
+                        }
                     });
                 })
                 .catch(error => console.error('Ошибка поиска адреса:', error));

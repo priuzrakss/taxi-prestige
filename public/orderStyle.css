@@ -130,7 +130,7 @@ html, body {
     gap: 0.5vw;
     position: absolute;
     border-radius: 3.5vw;
-    background-color: black;
+    background-color: rgb(56, 56, 56);
     color: #e9e9e9;
     width: 23vw;
     height: 9vh;
@@ -143,7 +143,7 @@ html, body {
     width: 2vw;
     height: 2vw;
     border: 0vw;
-    background: black;
+    background: rgba(56, 56, 56, 0);
     color: white;
     border-radius: 3.5vw;
     font-size: 1.6vw;
@@ -457,7 +457,7 @@ button {
         gap: 0.5vw;
         position: absolute;
         border-radius: 8.5vw;
-        background-color: black;
+        background-color: rgb(56, 56, 56);
         color: #e9e9e9;
         width: 42vw;
         height: 5vh;
@@ -634,7 +634,7 @@ button {
         width: 2vw;
         height: 2vw;
         border: 0vw;
-        background: rgba(0, 0, 0, 0);
+        background: rgba(56, 56, 56, 0);
         color: white;
         border-radius: 3.5vw;
         font-size: 4.6vw;
