@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Заказ</title>
     <meta name="description" content="Межгородское такси по России: комфорт, надежность и доступность. Быстрый заказ и выгодные тарифы.">
     <meta name="geo.region" content="RU">
@@ -15,109 +16,90 @@
     <link rel="manifest" href="images/site.webmanifest">
     <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png">
-</head>
-<body>
-    <section class="order_box">
-    <section class="box">
-        <h1>Тариф</h1>
-        <section class="box_ipt">
-            <button class="box_button_1" id="back_btn"><</button>
-            <h1 id="tariff" class="tariff">Эконом</h1>
-            <button class="box_button_2" id="next_btn">></button>
-        </section>
-        <div id="price-to-km">text</div>
-
-        <h2 id="price">Цена:</h2>
-        </div>
-        <section class="box_ipt_2" id="map"></section>
-
-    </section>
-    <section class="shadow_box">    
-    <h1 style="text-align: center;" class="data_adress">Адресс</h1>
-
-    <!-- Таблица для поля "Откуда" -->
-    <table>
-        <tr>
-            <th>Откуда</th>
-            <td><input type="text" id="from-address" placeholder="Введите адрес" class="input_from_address"/>   
-                <div class="search">
-                    <ul id="from-address-results" class="search-results"></ul>
-                </div> 
-            </td>
-        </tr>
-    </table>
-
-    <!-- Таблица для поля "Куда" -->
-    <table>
-        <tr>
-            <th>Куда</th>
-            <td><input type="text" id="to-address" placeholder="Выберите адрес" class="input_to_address">
-            <div class="search">
-                <ul id="to-address-results" class="search-results2"></ul>
-                </div> 
-            </td>
-        </tr>
-    </table>
-    
-    <h1 style="text-align: center;" class="data_time">Время</h1>
-
-    <!-- Таблица для ввода даты -->
-    <table>
-        <tr>
-            <th>Дата</th>
-            <td><input type="date" class="input_date"></td>
-        </tr>
-    </table>
-
-    <!-- Таблица для ввода времени -->
-    <table>
-        <tr>
-            <th>Время</th>
-            <td><input type="time" class="input_time"></td>
-        </tr>
-    </table>
-
-    <h1 style="text-align: center;" class="data_contacts">Контактные данные</h1>
-
-    <!-- Таблица для имени -->
-    <table>
-        <tr>
-            <th>Имя</th>
-            <td><input type="text" class="input_name"></td>
-        </tr>
-    </table>
-
-    <!-- Таблица для телефона -->
-    <table>
-        <tr>
-            <th>Номер телефона</th>
-            <td><input type="tel" class="input_tel"></td>
-        </tr>
-    </table>
-
-    <!-- Кнопки -->
-    <div style="text-align: center; margin-top: 20px;">
-        <button id="comment_btn" class="shadow_box_btn_1">Указать комментарий</button><br><br>
-        <button class="shadow_box_btn_2">Заказать</button>
-    </div>
-    </section>
-    <section class="image_box"></section>
-</section>
-
-<div id="popup" style="display: none;">
-  <div id="popup_content">
-    <span id="close_popup">&times;</span>
-    <textarea id="comment_input" maxlength="150" placeholder="Введите комментарий..."></textarea>
-  </div>
-</div>
-
-<div id="message-box" class="message-box hidden"></div>
-
-</body>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-    
-  <script src="map.js"></script>
+</head>
+<body>
+    <section class="order_box">
+        <section class="box">
+            <h1>Тариф</h1>
+            <section class="box_ipt">
+                <button class="box_button_1" id="back_btn"><</button>
+                <h1 id="tariff" class="tariff">Эконом</h1>
+                <button class="box_button_2" id="next_btn">></button>
+            </section>
+            <div id="price-to-km">text</div>
+            <h2 id="price">Цена:</h2>
+            <section class="box_ipt_2" id="map"></section>
+        </section>
+        <section class="shadow_box">    
+            <h1 style="text-align: center;" class="data_adress">Адресс</h1>
+            <table>
+                <tr>
+                    <th>Откуда</th>
+                    <td><input type="text" id="from-address" placeholder="Введите адрес" class="input_from_address"/>   
+                        <div class="search">
+                            <ul id="from-address-results" class="search-results"></ul>
+                        </div> 
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th>Куда</th>
+                    <td><input type="text" id="to-address" placeholder="Выберите адрес" class="input_to_address">
+                        <div class="search">
+                            <ul id="to-address-results" class="search-results2"></ul>
+                        </div> 
+                    </td>
+                </tr>
+            </table>
+            <h1 style="text-align: center;" class="data_time">Время</h1>
+            <table>
+                <tr>
+                    <th>Дата</th>
+                    <td><input type="date" class="input_date"></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th>Время</th>
+                    <td><input type="time" class="input_time"></td>
+                </tr>
+            </table>
+            <h1 style="text-align: center;" class="data_contacts">Контактные данные</h1>
+            <table>
+                <tr>
+                    <th>Имя</th>
+                    <td><input type="text" class="input_name"></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th>Номер телефона</th>
+                    <td><input type="tel" class="input_tel"></td>
+                </tr>
+            </table>
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="comment_btn" class="shadow_box_btn_1">Указать комментарий</button><br><br>
+                <button class="shadow_box_btn_2">Заказать</button>
+            </div>
+        </section>
+        <section class="image_box"></section>
+    </section>
+
+    <div id="popup" style="display: none;">
+        <div id="popup_content">
+            <span id="close_popup">&times;</span>
+            <textarea id="comment_input" maxlength="150" placeholder="Введите комментарий..."></textarea>
+        </div>
+    </div>
+
+    <div id="message-box" class="message-box hidden"></div>
+
+    <script src="map.js"></script>
+    <script src="style_script.js"></script>
+</body>
 </html>
