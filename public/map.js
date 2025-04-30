@@ -27,8 +27,15 @@ var locateControl = L.Control.extend({
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var lat = position.coords.latitude;
                     var lng = position.coords.longitude;
+
+                    // Добавляем маркер на карту
                     addMarker([lat, lng]);
-                    map.setView([lat, lng], 13); // Центр карты на местоположение
+
+                    // Центрируем карту на местоположении
+                    map.setView([lat, lng], 13);
+
+                    // Выполняем обратное геокодирование для получения адреса
+                    reverseGeocode({ lat, lng }, 'from-address'); // Заполняем поле "откуда"
                 }, function () {
                     console.log('Не удалось получить местоположение');
                 });
@@ -50,7 +57,19 @@ function reverseGeocode(latlng, inputId) {
         .then(response => response.json())
         .then(data => {
             if (data && data.display_name) {
-                document.getElementById(inputId).value = data.display_name; // Заполняем поле адреса
+                // Разбиваем полный адрес на части
+                const addressParts = data.display_name.split(',').map(part => part.trim());
+
+                // Извлекаем нужные части: адрес, номер дома и город
+                const filteredAddress = addressParts.slice(0, 3).join(', '); // Первые три части
+
+                // Заполняем поле адреса
+                const inputElement = document.getElementById(inputId);
+                if (inputElement) {
+                    inputElement.value = filteredAddress;
+                } else {
+                    console.error(`Поле с id "${inputId}" не найдено.`);
+                }
             } else {
                 console.log('Не удалось получить адрес');
             }
@@ -60,43 +79,110 @@ function reverseGeocode(latlng, inputId) {
 
 // Функция обработки ввода текста и выполнения поиска с предложениями
 function handleAddressInputWithSuggestions(inputId, resultsId, markerIndex) {
-    document.getElementById(inputId).addEventListener('input', function (e) {
-        const query = e.target.value.trim();
-        const resultsContainer = document.getElementById(resultsId);
+    let userLocation = null;
+    let isOptionSelected = false; // Флаг для отслеживания выбора варианта
 
-        if (query.length > 2) {
-            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`)
+    // Получаем местоположение пользователя
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            userLocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+        }, function () {
+            console.log('Не удалось получить местоположение');
+        });
+    }
+
+    const inputElement = document.getElementById(inputId);
+    const resultsContainer = document.getElementById(resultsId);
+
+    // Общая функция для выполнения поиска
+    function performSearch() {
+        const query = inputElement.value.trim();
+
+        // Если вариант уже выбран, не выполняем поиск
+        if (isOptionSelected) {
+            return;
+        }
+
+        if (query.length > 3) {
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&q=${encodeURIComponent(query)}&countrycodes=ru`)
                 .then(response => response.json())
                 .then(data => {
                     resultsContainer.innerHTML = ''; // Очищаем предыдущие результаты
 
+                    if (data.length > 0) {
+                        // Автоматически выбираем первый вариант
+                        const firstLocation = data[0];
+                        inputElement.value = firstLocation.display_name;
+
+                        const lat = parseFloat(firstLocation.lat);
+                        const lon = parseFloat(firstLocation.lon);
+                        if (markers[markerIndex]) {
+                            markers[markerIndex].setLatLng([lat, lon]); // Обновляем существующий маркер
+                        } else {
+                            addMarker([lat, lon]); // Добавляем новый маркер
+                        }
+
+                        map.setView([lat, lon], 13); // Центрируем карту на выбранный адрес
+                        updateRoute(); // Пересчитываем маршрут
+                    }
+
+                    // Добавляем все варианты в список
                     data.forEach(location => {
-                        const li = document.createElement('li');
-                        li.textContent = location.display_name;
-                        li.addEventListener('click', () => {
-                            // Обновляем поле ввода выбранным адресом
-                            document.getElementById(inputId).value = location.display_name;
+                        const { address } = location;
 
-                            // Добавляем или обновляем маркер
-                            const lat = parseFloat(location.lat);
-                            const lon = parseFloat(location.lon);
-                            if (markers[markerIndex]) {
-                                markers[markerIndex].setLatLng([lat, lon]); // Обновляем существующий маркер
-                            } else {
-                                addMarker([lat, lon]); // Добавляем новый маркер
-                            }
+                        // Фильтруем только города, поселки или точные совпадения
+                        if (address && (address.city || address.town || address.village)) {
+                            const li = document.createElement('li');
+                            li.textContent = location.display_name;
+                            li.addEventListener('click', () => {
+                                // Обновляем поле ввода выбранным адресом
+                                inputElement.value = location.display_name;
 
-                            map.setView([lat, lon], 13); // Центрируем карту на выбранный адрес
-                            updateRoute(); // Пересчитываем маршрут
-                            resultsContainer.innerHTML = ''; // Очищаем список результатов
-                        });
-                        resultsContainer.appendChild(li);
+                                // Добавляем или обновляем маркер
+                                const lat = parseFloat(location.lat);
+                                const lon = parseFloat(location.lon);
+                                if (markers[markerIndex]) {
+                                    markers[markerIndex].setLatLng([lat, lon]); // Обновляем существующий маркер
+                                } else {
+                                    addMarker([lat, lon]); // Добавляем новый маркер
+                                }
+
+                                map.setView([lat, lon], 13); // Центрируем карту на выбранный адрес
+                                updateRoute(); // Пересчитываем маршрут
+                                resultsContainer.innerHTML = ''; // Очищаем список результатов
+
+                                // Устанавливаем флаг, что вариант выбран
+                                isOptionSelected = true;
+                            });
+                            resultsContainer.appendChild(li);
+                        }
                     });
                 })
                 .catch(error => console.error('Ошибка поиска адреса:', error));
         } else {
-            resultsContainer.innerHTML = ''; // Очищаем список, если введено меньше 3 символов
+            resultsContainer.innerHTML = ''; // Очищаем список, если введено меньше 4 символов
         }
+    }
+
+    // Обработчик для нажатия Enter
+    inputElement.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Предотвращаем стандартное поведение Enter
+            performSearch();
+        }
+    });
+
+    // Обработчик для выхода из поля ввода
+    inputElement.addEventListener('blur', function () {
+        performSearch();
+    });
+
+    // Сбрасываем флаг, если пользователь изменяет текст вручную
+    inputElement.addEventListener('input', function () {
+        isOptionSelected = false;
     });
 }
 
@@ -143,7 +229,7 @@ function addMarker(latlng) {
 function drawRouteWithOSRM(points) {
     if (points.length < 2) return; // Маршрут строится только если есть две точки
 
-    const routeUrl = `https://router.project-osrm.org/route/v1/driving/${points.map(p => `${p.lng},${p.lat}`).join(';')}?overview=full&geometries=geojson`;
+    const routeUrl = `https://router.project-osrm.org/route/v1/driving/${points.map(p => `${p.lng},${p.lat}`).join(';')}?overview=full&geometries=geojson&alternatives=true`;
 
     fetch(routeUrl)
         .then(response => response.json())
@@ -152,10 +238,25 @@ function drawRouteWithOSRM(points) {
                 map.removeLayer(routeLine); // Удаляем предыдущий маршрут
             }
 
-            const route = data.routes[0].geometry; // Получаем геометрию маршрута
-            routeLine = L.geoJSON(route, { color: 'blue', weight: 5 }).addTo(map); // Отображаем маршрут на карте
+            // Перебираем все маршруты
+            data.routes.forEach((route, index) => {
+                const color = index === 0 ? 'blue' : index === 1 ? 'green' : 'red'; // Разные цвета для маршрутов
+                const routeLayer = L.geoJSON(route.geometry, { color, weight: 5 }).addTo(map);
 
-            calculateDistanceAndPrice(data.routes[0].distance); // Передаем расстояние для расчета
+                // Добавляем обработчик для выбора маршрута
+                routeLayer.on('click', () => {
+                    if (routeLine) {
+                        map.removeLayer(routeLine); // Удаляем предыдущий выбранный маршрут
+                    }
+                    routeLine = routeLayer; // Устанавливаем выбранный маршрут
+                    calculateDistanceAndPrice(route.distance); // Пересчитываем стоимость
+                });
+            });
+
+            // По умолчанию выбираем первый маршрут
+            const firstRoute = data.routes[0];
+            routeLine = L.geoJSON(firstRoute.geometry, { color: 'blue', weight: 5 }).addTo(map);
+            calculateDistanceAndPrice(firstRoute.distance); // Передаем расстояние для расчета
         })
         .catch(error => console.error('Ошибка загрузки маршрута:', error));
 }
