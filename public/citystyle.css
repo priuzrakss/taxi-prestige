@@ -98,19 +98,35 @@
     }
   
     .citys {
-      overflow-x: auto;
-      display: flex;
+      /* overflow-x: auto; */
+      display: flex
+;
       margin-top: 0%;
-      margin-left: 17%;
+      /* margin-left: 17%; */
       font-family: 'Montserrat', sans-serif;
       font-weight: 500;
       font-size: 300%;
-    }
+      overflow-y: auto;
+      flex-direction: column;
+  }
   
     .city-list{
-      margin-left: 50%;
+      margin-left: 0%;
     }
   
+    .city-block {
+      width: 92%;
+      height: 62%;
+      background: white;
+      flex-direction: column;
+      border-radius: 10vw;
+      display: inline-block;
+      margin-right: 0%;
+      padding: 5%;
+      border: 1px solid #ccc;
+      margin-top: -80%;
+      overflow-y: auto;
+  }
   }
   
     
