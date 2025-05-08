@@ -373,6 +373,7 @@ document.querySelector('.shadow_box_btn_2').addEventListener('click', () => {
     const comment = document.getElementById('comment_input').value;
     const tariff = document.getElementById('tariff').textContent;
     const price = document.getElementById('price').textContent;
+    const distance = routeLine ? routeLine.getBounds().toBBoxString().length : null; // Пример получения километража
 
     // Проверяем, что обязательные поля заполнены
     if (!fromAddress || !toAddress || !date || !time || !name || !phone) {
@@ -387,6 +388,18 @@ document.querySelector('.shadow_box_btn_2').addEventListener('click', () => {
         return;
     }
 
+    // Проверка наличия маршрута, цены и километража
+    if (!price || !distance) {
+        showMessage('Одно из полей заполнено неверно. Проверьте маршрут, цену и километраж.', 'error');
+        return;
+    }
+
+    // Проверка наличия маршрута на карте
+    if (!routeLine) {
+        showMessage('На карте нет маршрута. Пожалуйста, введите адреса заново.', 'error');
+        return;
+    }
+
     // Формируем объект данных
     const orderData = {
         fromAddress,
@@ -397,7 +410,8 @@ document.querySelector('.shadow_box_btn_2').addEventListener('click', () => {
         phone,
         comment,
         tariff,
-        price
+        price,
+        distance
     };
 
     // Блокируем кнопку отправки
