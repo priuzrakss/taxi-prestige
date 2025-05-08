@@ -7,6 +7,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // Переменные для хранения маркеров и линии маршрута
 var markers = [];
 var routeLine = null;
+var alternativeRoutes = []; // Переменная для хранения альтернативных маршрутов
 
 // Пользовательский контрол для кнопки "Моё местоположение"
 var locateControl = L.Control.extend({
@@ -238,25 +239,36 @@ function drawRouteWithOSRM(points) {
                 map.removeLayer(routeLine); // Удаляем предыдущий маршрут
             }
 
-            // Перебираем все маршруты
-            data.routes.forEach((route, index) => {
-                const color = index === 0 ? 'blue' : index === 1 ? 'green' : 'red'; // Разные цвета для маршрутов
-                const routeLayer = L.geoJSON(route.geometry, { color, weight: 5 }).addTo(map);
+            // Удаляем все предыдущие альтернативные маршруты
+            if (alternativeRoutes) {
+                alternativeRoutes.forEach(route => map.removeLayer(route));
+            }
+            alternativeRoutes = [];
 
-                // Добавляем обработчик для выбора маршрута
-                routeLayer.on('click', () => {
-                    if (routeLine) {
-                        map.removeLayer(routeLine); // Удаляем предыдущий выбранный маршрут
-                    }
-                    routeLine = routeLayer; // Устанавливаем выбранный маршрут
-                    calculateDistanceAndPrice(route.distance); // Пересчитываем стоимость
-                });
-            });
+            // Проверяем, есть ли маршруты
+            if (!data.routes || data.routes.length === 0) {
+                showMessage('Не удалось построить маршрут. Попробуйте снова.', 'error');
+                return;
+            }
 
-            // По умолчанию выбираем первый маршрут
             const firstRoute = data.routes[0];
+            const distanceInKm = firstRoute.distance / 1000; // Переводим расстояние в километры
+
+            // Проверяем, что расстояние больше 50 км
+            if (distanceInKm < 50) {
+                showMessage('Маршрут должен быть больше 50 км. Пожалуйста, выберите другой маршрут.', 'error');
+                return;
+            }
+
+            // Если расстояние больше 50 км, строим основной маршрут
             routeLine = L.geoJSON(firstRoute.geometry, { color: 'blue', weight: 5 }).addTo(map);
             calculateDistanceAndPrice(firstRoute.distance); // Передаем расстояние для расчета
+
+            // Отображаем альтернативные маршруты
+            data.routes.slice(1).forEach(route => {
+                const alternativeRoute = L.geoJSON(route.geometry, { color: 'gray', weight: 3, dashArray: '5, 5' }).addTo(map);
+                alternativeRoutes.push(alternativeRoute);
+            });
         })
         .catch(error => console.error('Ошибка загрузки маршрута:', error));
 }
